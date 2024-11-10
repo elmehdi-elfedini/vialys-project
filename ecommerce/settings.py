@@ -2,17 +2,11 @@ from pathlib import Path
 import os
 
 
-STORAGES = {
-    # ...
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
-}
-
 LANGUAGE_CODE = 'fr'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # For media files 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_URL = '/static/'
