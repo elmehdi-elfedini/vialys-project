@@ -1600,7 +1600,6 @@ Theme Version:	12.0.0
 
 /* Arrows */
 .arrow {
-	background: transparent url(../img/arrows.png) no-repeat 0 0;
 	width: 47px;
 	height: 120px;
 	display: inline-block;
@@ -6306,7 +6305,6 @@ hr.pattern, .divider.pattern {
 }
 
 hr.pattern:after, .divider.pattern:after {
-	background: transparent url(../img/patterns/worn_dots.png) repeat 0 0;
 	content: "";
 	display: block;
 	height: 15px;
@@ -7885,7 +7883,6 @@ hr.pattern:after, .divider.pattern:after {
 .flag {
 	width: 16px;
 	height: 11px;
-	background: url(../img/flags.png) no-repeat;
 }
 
 .flag.flag-ad {
@@ -10848,7 +10845,6 @@ i.pi.pi-close:after {
 /* Custom Image Icons */
 .icon-bg {
 	display: inline-block;
-	background: url(../img/icons/icons.png) no-repeat;
 	width: 80px;
 	height: 80px;
 }
@@ -15902,9 +15898,7 @@ section.section.section-overlay .section-angled-layer-bottom {
 	z-index: 99 !important;
 }
 
-section.section.section-overlay-dot:before {
-	background: url(../img/overlay-dot.png) repeat scroll 0 0 transparent;
-}
+
 
 section.section.section-overlay-opacity {
 	position: relative;
@@ -21992,7 +21986,6 @@ section.video blockquote i.fa-quote-left {
 
 /* Custom Map */
 section.section-custom-map {
-	background: transparent url(../img/map.png) center 0 no-repeat;
 	padding: 129px 0 0;
 	margin: 20px 0 0;
 	border: 0;
@@ -22206,7 +22199,6 @@ section.section-custom-map section.section {
 
 /* Home Concept */
 .home-concept {
-	background: transparent url(../img/home/home-concept.png) no-repeat center 0;
 	width: 100%;
 	overflow: hidden;
 }
@@ -22225,7 +22217,6 @@ section.section-custom-map section.section {
 }
 
 .home-concept .process-image {
-	background: transparent url(../img/home/home-concept-item.png) no-repeat 0 0;
 	width: 160px;
 	margin: 120px auto 0 auto;
 	padding-bottom: 50px;
@@ -22254,7 +22245,6 @@ section.section-custom-map section.section {
 }
 
 .home-concept .project-image {
-	background: transparent url(../img/home/home-concept-item.png) no-repeat 100% 0;
 	width: 350px;
 	margin: 20px 0 0 -30px;
 	padding-bottom: 45px;
@@ -22263,7 +22253,6 @@ section.section-custom-map section.section {
 }
 
 .home-concept .sun {
-	background: transparent url(../img/home/home-concept-icons.png) no-repeat 0 0;
 	width: 60px;
 	height: 56px;
 	display: block;
@@ -22273,7 +22262,6 @@ section.section-custom-map section.section {
 }
 
 .home-concept .cloud {
-	background: transparent url(../img/home/home-concept-icons.png) no-repeat 100% 0;
 	width: 116px;
 	height: 56px;
 	display: block;
