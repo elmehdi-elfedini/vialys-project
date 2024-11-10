@@ -1516,7 +1516,6 @@ Theme Version:	12.0.0
 	position: absolute;
 	right: calc(100% - 74px);
 	bottom: -6px;
-	background: url(../img/pencil-blue-line.png);
 	width: 0;
 	height: 15px;
 	animation-name: pencilAnimation;
