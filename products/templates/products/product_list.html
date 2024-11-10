@@ -79,19 +79,18 @@
             </div>
             
 
-            <!-- Display tags -->
-            <div class="container py-4 p-0">
-                <h4 class="text-muted">Choisir catégorie :</h4>
-                <div style="border: 2px solid grey !important; border-radius: 15px !important; padding: 1rem !important;">
-                    {% for tag in category.tags.all %}
-                        <a href="?brand={{ selected_brand }}&tag={{ tag.name|urlencode }}&category={{ selected_category|default:category.id }}" 
-                           class="badge text-dark m-1" style="font-size: 1rem;">
-                            {{ tag.name }}
-                        </a>
-                    {% endfor %}
-                </div>
-                
+     <!-- Display tags -->
+        <div class="container py-4 p-0">
+            <h4 class="text-muted">Choisir catégorie :</h4>
+            <div style="border: 2px solid grey !important; border-radius: 15px !important; padding: 1rem !important;">
+                {% for tag in tags %}
+                    <a href="?brand={{ selected_brand }}&tag={{ tag.name|urlencode }}&category={{ selected_category|default:category.id }}" 
+                    class="badge text-dark m-1" style="font-size: 1rem;">
+                        {{ tag.name }}
+                    </a>
+                {% endfor %}
             </div>
+        </div>
         </div>
 
      <!-- Display products -->
