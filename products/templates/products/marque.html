@@ -1,0 +1,197 @@
+<!-- templates/products/index.html -->
+{% extends 'products/base.html' %}
+{% load static %}
+
+{% block title %} Accueil | Vialys {% endblock %}
+
+{% block content %}
+<section
+    class="page-header page-header-modern page-header-background page-header-background-md overlay overlay-color-dark overlay-show overlay-op-5"
+    style="background-image: url('{% static 'images/9245@1x.png' %}'); background-position: center; background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 order-2 order-md-1 align-self-center p-static">
+                <h1><strong>NOS MARQUES</strong></h1>
+                <span class="sub-title">Pour un résultat, élaboré et riche en saveur les produits Al Moumtaza sont une
+                    réponse à toutes les exigences de la boulangerie. Avec les produits de la gamme Yama, vous pourrez
+                    développer votre créativité, et proposer à votre clientèle des produits de pâtisserie raffinés,
+                    innovants et savoureux.
+                </span>
+            </div>
+            <div class="col-md-4 order-1 order-md-2 align-self-center">
+                <ul class="breadcrumb breadcrumb-light d-block text-md-end">
+                    <li><a href="{% url 'acceuil' %}">Acceuil</a></li>
+                    <li class="active">Produits</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="row justify-content-center text-center mb-4 appear-animation" data-appear-animation="fadeInUpShorter"
+    data-appear-animation-delay="400">
+    <div class="col-lg-8">
+        <p class="opacity-9 text-4">PRODUITS</p>
+        <h2 class="font-weight-bold mb-3 mt-3 text-10">NOS MARQUES</h2>
+        <p class="opacity-9 text-4">Pour un résultat, élaboré et riche en saveur les produits Al Moumtaza sont une
+            réponse à toutes les exigences de la boulangerie. Avec les produits de la gamme Yama, vous pourrez
+            développer votre créativité, et proposer à votre clientèle des produits de pâtisserie raffinés, innovants et
+            savoureux.
+        </p>
+    </div>
+</div>
+{% load static %}
+
+
+<style>
+    body {
+        background-color: white;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .category-container {
+        border: 1px solid #333333;
+        padding: 20px;
+        margin: 40px 0;
+        position: relative;
+    }
+
+    .section-title {
+        color: #666666;
+        font-size: 38px;
+        font-weight: 700;
+        position: absolute;
+        top: -28px;
+        left: 20px;
+        background: white;
+        padding: 0 15px;
+        margin: 0;
+        text-transform: capitalize;
+    }
+
+    .brand-card-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+        width: calc(33.333% - 40px);
+    }
+
+    .brand-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #f4f4f4;
+        padding: 20px; /* Réduit de 30px à 20px */
+        width: 90%; /* Réduit de 100% à 90% */
+        height: 220px; /* Réduit de 250px à 220px */
+        text-align: center;
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .brand-logo {
+        width: 90%; /* Réduit de 100% à 90% */
+        height: 130px; /* Réduit de 150px à 130px */
+        object-fit: contain;
+        margin-bottom: 20px;
+    }
+
+    .brand-description {
+        color: black;
+        font-size: 14px;
+        margin-top: 5px;
+        text-align: center;
+    }
+
+    .view-range-btn {
+        background-color: #00A3E0;
+        color: white;
+        padding: 8px 25px;
+        border: none;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-size: 14px;
+        text-decoration: none;
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+    }
+
+    .view-range-btn:hover {
+        background-color: #0089BD;
+        color: white;
+        text-decoration: none;
+    }
+
+    .brands-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Changé de flex-start à center */
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    @media (max-width: 992px) {
+        .brand-card-wrapper {
+            width: calc(50% - 40px);
+        }
+        .section-title {
+            font-size: 34px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .brand-card-wrapper {
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+        }
+        .section-title {
+            font-size: 30px;
+        }
+    }
+</style>
+
+<div class="container">
+    {% for category in categories %}
+    <div class="category-container">
+        <h2 class="section-title">{{ category.name }}</h2>
+        <div class="brands-container">
+            {% for brand in category.brands.all %}
+            <div class="brand-card-wrapper">
+                <div class="brand-card">
+                    {% if brand.image %}
+                    <img src="{{ brand.image.url }}" class="brand-logo" alt="{{ brand.name }}">
+                    {% endif %}
+                    <a href="{% url 'product-list' %}?brand={{ brand.id }}&category={{ category.id }}" class="view-range-btn">
+                        VOIR LA GAMME
+                    </a>
+                </div>
+                <p class="brand-description">{{ brand.description }}</p>
+            </div>
+            {% empty %}
+            <p>Aucune marque disponible pour cette catégorie.</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+<div class="position-relative">
+    <img src="{% static 'images/image11.png' %}" loading="lazy" alt="Placeholder Image" class="img-fluid"
+        style="width: 100%; height: 100%; object-fit: cover;">
+</div>
+{% endblock %}

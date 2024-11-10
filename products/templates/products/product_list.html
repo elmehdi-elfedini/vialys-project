@@ -1,0 +1,343 @@
+{% extends 'products/base.html' %}
+{% load static %} <!-- Add this line to load the static template tag library -->
+{% block title %} Produits | Vialys {% endblock %}
+
+{% block content %}
+
+
+<!-- Check if messages exist and display using SweetAlert -->
+{% if messages %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            {% for message in messages %}
+                Swal.fire({
+                    icon: '{% if message.tags == "success" %}success{% elif message.tags == "error" %}error{% endif %}',
+                    title: '{% if message.tags == "success" %}{{ message }}{% elif message.tags == "error" %}Error!{% endif %}',
+                    html: `{% if message.tags == "success" %}Merci d'avoir choisi notre service. Nous avons bien reçu votre demande et elle est en cours de traitement.{% else %}{{ message }}{% endif %}`,
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        popup: 'swal2-show',
+                        icon: 'swal2-icon-show',
+                        title: 'swal2-title',
+                        htmlContainer: 'swal2-html-container',
+                    }
+                });
+            {% endfor %}
+        });
+    </script>
+{% endif %}
+
+
+
+
+<div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover show-dots-xs nav-style-1 nav-inside nav-inside-plus nav-dark nav-lg nav-font-size-lg show-nav-hover mb-0"
+    data-plugin-options="{'autoplayTimeout': 7000}" data-dynamic-height="['300px','300px','300px','300px','300px']"
+    style="height: 500px;">
+    <div class="owl-stage-outer">
+        <div class="owl-stage">
+            <!-- Carousel Slide 1 -->
+            <div class="owl-item position-relative overflow-hidden"
+                style="background-image: url({% static 'images/38273@1x.png' %}); background-size: cover; background-position: center;">         
+            </div>
+            <!-- Carousel Slide 2 -->
+            <div class="owl-item position-relative"
+                style="background-image: url({% static 'images/112972@1x.png' %}); background-size: cover; background-position: center; ">             
+            </div>      
+        </div>
+    </div>
+    <div class="owl-nav">
+        <button type="button" role="presentation" class="owl-prev" aria-label="Previous"></button>
+        <button type="button" role="presentation" class="owl-next" aria-label="Next"></button>
+    </div>
+    <div class="owl-dots mb-5">
+        <button role="button" class="owl-dot active"><span></span></button>
+        <button role="button" class="owl-dot"><span></span></button>
+    </div>
+</div>
+
+<section id="products-section" class="section section-no-border section-light position-relative z-index-3 pt-0 m-0">
+    <div class="container justify-content-center align-items-center">
+        {% for category, products in category_products.items %}
+        <div class="container justify-content-center align-items-center">
+            <div class="d-flex align-items-center">
+                <h1 class="display-5 p-0 text-primary" style="font-weight: bold; margin-top: 70px;">
+                    {{ category.name }} &nbsp;&nbsp;&nbsp;&nbsp;
+                </h1>
+                <hr style="flex-grow: 1; border: 1px solid #5AA9E4; margin: 0; margin-top: 40px;"> 
+            </div>
+            
+            <!-- Display brand buttons -->
+            <div class="filter-wrapper py-2 bg-light left-0 z-index-3 w-100">
+                <div class="brands mb-3">
+                    {% for brand in category.brands.all %}
+                        <a href="?brand={{ brand.id }}&category={{ selected_category|default:category.id }}" 
+                           class="btn {% if brand.id|stringformat:"s" == selected_brand %}btn-primary{% else %}btn-light{% endif %} 
+                           rounded-0 btn-lg me-2">{{ brand.name }}</a>
+                    {% endfor %}
+                </div>
+                
+            </div>
+            
+
+            <!-- Display tags -->
+            <div class="container py-4 p-0">
+                <h4 class="text-muted">Choisir catégorie :</h4>
+                <div style="border: 2px solid grey !important; border-radius: 15px !important; padding: 1rem !important;">
+                    {% for tag in category.tags.all %}
+                        <a href="?brand={{ selected_brand }}&tag={{ tag.name|urlencode }}&category={{ selected_category|default:category.id }}" 
+                           class="badge text-dark m-1" style="font-size: 1rem;">
+                            {{ tag.name }}
+                        </a>
+                    {% endfor %}
+                </div>
+                
+            </div>
+        </div>
+
+     <!-- Display products -->
+     <div class="container justify-content-center align-items-center">
+        <h2 class="m-0 mt-4 mb-4" style="font-weight: 500;">
+            <strong>{{ products|length }} &nbsp;Produits disponibles </strong> 
+        </h2>
+        <hr style="border: 1px solid #5AA9E4;">
+        {% if products|length == 0 %}
+            <p>Aucun produit trouvé dans cette catégorie.</p>
+        {% else %}
+        <div class="row portfolio-list sort-destination sort-destination-margin sort-destination-items-hardware-acc overflow-visible mt-4"
+        data-sort-id="portfolio">
+       {% for product in products %}
+       <div class="col-sm-6 col-md-4 col-lg-3 isotope-item business new mb-4">
+           <div class="product-card h-100 d-flex flex-column"> <!-- Ajout de h-100 et d-flex flex-column -->
+               <span class="thumb-info thumb-info-no-zoom thumb-info-no-overlay thumb-info-no-bg">
+                   <img src="{{ product.image.url }}" alt="{{ product.title }}" class="img-fluid" style="width: 100%; height: 200px; object-fit: cover;">
+               </span>
+               <div class="portfolio-item text-start border rounded p-3 shadow flex-grow-1 d-flex flex-column">
+                   <!-- Position relative pour le badge -->
+                   <div class="position-relative mb-3">
+                       <span class="badge text-bg-secondary position-absolute" style="top: 0; left: 0;">{{ product.brand.name }}</span>
+                   </div>
+                   
+                   <!-- Contenu du produit -->
+                   <div class="product-content flex-grow-1">
+                       <ul class="product-details">
+                           <li class="product-title ">{{ product.title }}</li>
+                           <li><span class="label">Emballage : </span><span class="value">{{ product.emballage }}</span></li>
+                           <li><span class="label">Descriptif : </span><span class="value">{{ product.description }}</span></li>
+                              
+                       </ul>
+                   </div>
+                   
+                   <!-- Bouton toujours en bas -->
+                   <div class="mt-auto d-flex justify-content-center">
+                       <a href="#order-form" class="btn btn-primary rounded-pill mt-2">
+                           <i class="fa fa-shopping-bag" style="color: rgb(255, 166, 0);"></i>&nbsp; Commander
+                       </a>
+                   </div>
+               </div>
+           </div>
+       </div>
+       {% endfor %}
+        {% endif %}
+    </div>
+    
+
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+    window.onload = () => document.getElementById('products-section')?.scrollIntoView();
+</script>
+<section  class="section section-height-1 bg-color-grey m-0 border-0" id="order-form">
+    <div id="order-form" class="container py-4 my-5">
+        <div class="row justify-content-center text-center mb-4 appear-animation"
+            data-appear-animation="fadeInUpShorter" data-appear-animation-delay="400">
+            <div class="col-lg-8">
+                <p class="opacity-9 text-4">COMMANDEZ EN LIGNE
+                </p>
+                <h2 class="font-weight-bold mb-3 mt-3 text-10">Formulaire de Commande</h2>
+                <p class="opacity-9 text-4">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem
+                    Ipsum has been the industry's standard text ever since the 1500s.
+                </p>
+            </div>
+        </div>
+
+        <div style="margin-bottom: -300px;">
+
+            <div class="card mb-4 bg-transparent border-0 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="400">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <form class="contact-form form-with-icons" method="post" action="{% url 'order-create' %}">
+                                {% csrf_token %}            
+                                <div class="row">
+                                    <!-- Email Address -->
+                                    <div class="form-group col">
+                                        <div class="position-relative">
+                                            <input type="email" value=""
+                                                data-msg-required="Veuillez entrer une adresse email."
+                                                maxlength="100" placeholder="Entrez votre adresse email"
+                                                class="form-control text-3 h-auto py-2 pl-4 border border-secondary rounded-3"
+                                                style="border-color: lightgrey !important; border-width: 2px !important;"
+                                                name="email" required>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="row">
+                                    <!-- Full Name -->
+                                    <div class="form-group col-lg-6">
+                                        <div class="position-relative">
+                                            <input type="text" value=""
+                                                data-msg-required="Veuillez entrer votre nom complet."
+                                                maxlength="100" placeholder="Entrez votre nom complet"
+                                                class="form-control text-3 h-auto py-2 pl-4 border border-secondary rounded-3"
+                                                style="border-color: lightgrey !important; border-width: 2px !important;"
+                                                name="name" required>
+                                        </div>
+                                    </div>
+                                    <!-- Phone Number -->
+                                    <div class="form-group col-lg-6">
+                                        <div class="position-relative">
+                                            <input type="tel" value=""
+                                                data-msg-required="Veuillez entrer votre numéro de téléphone."
+                                                maxlength="15" placeholder="Entrez votre numéro de téléphone"
+                                                class="form-control text-3 h-auto py-2 pl-4 border border-secondary rounded-3"
+                                                style="border-color: lightgrey !important; border-width: 2px !important;"
+                                                name="phone_number" required>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="row">
+                                    <!-- Entreprise -->
+                                    <div class="form-group col-lg-6">
+                                        <div class="position-relative">
+                                            <input type="text" value=""
+                                                maxlength="100" placeholder="Entrez le nom de votre entreprise"
+                                                class="form-control text-3 h-auto py-2 pl-4 border border-secondary rounded-3"
+                                                style="border-color: lightgrey !important; border-width: 2px !important;"
+                                                name="company">
+                                        </div>
+                                    </div>
+            
+                                    <!-- Address -->
+                                    <div class="form-group col-lg-6">
+                                        <div class="position-relative">
+                                            <input type="text" value=""
+                                                maxlength="200" placeholder="Entrez votre adresse"
+                                                class="form-control text-3 h-auto py-2 pl-4 border border-secondary rounded-3"
+                                                style="border-color: lightgrey !important; border-width: 2px !important;"
+                                                name="address">
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="row">
+                                    <!-- Message -->
+                                    <div class="form-group col">
+                                        <div class="position-relative">
+                                            <textarea maxlength="5000"
+                                                rows="8" placeholder="Entrez votre message"
+                                                class="form-control text-3 h-auto py-2 pl-4 border border-secondary rounded-3"
+                                                style="border-color: lightgrey !important; border-width: 2px !important;"
+                                                name="message"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="row text-center">
+                                    <!-- Submit Button -->
+                                    <div class="form-group col">
+                                        <input type="submit" value="SOUMETTRE"
+                                            class="btn btn-primary btn-lg rounded-0 w-auto"
+                                            style="font-size: 14px; font-weight: normal; padding: 15px 30px;"
+                                            data-loading-text="Chargement...">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+</section>
+
+<section class="bg-image"
+    style="background-image: url('{% static 'images/groupe-de-masques-9@1x.png' %}'); background-size: cover; background-position: center;">
+    <div class="logos">
+        <img src="{% static 'images/sans-titre-2-0000s-0001-calque-1@1x.png' %}" loading="lazy" alt="Logo 1" class="mx-4"
+            style="width: 17%;height: 16%;">
+        <img src="{% static 'images/sans-titre-2-0000s-0002-calque-2@1x.png' %}" loading="lazy" alt="Logo 2" class="mx-4"
+            style="width: 16%;height: 16%;">
+        <img src="{% static 'images/sans-titre-2-0000s-0003-calque-3@1x.png' %}" loading="lazy" alt="Logo 3" class="mx-4"
+            style="width: 16%;height: 16%;">
+        <img src="{% static 'images/sans-titre-2-0000s-0004-calque-4@1x.png' %}" loading="lazy" alt="Logo 4" class="mx-4"
+            style="width: 16%;height: 16%;">
+    </div>
+</section>
+
+<script>
+     // Optional: Smooth scroll to the form section
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+    
+            const target = document.querySelector(this.getAttribute('href'));
+            window.scrollTo({
+                top: target.offsetTop,
+                behavior: 'smooth'
+            });
+        });
+    });
+    </script>
+<style>
+       .product-details {
+        list-style: none;
+        padding: 0;
+        margin: 10px 0;
+    }
+
+    .product-details li {
+        margin-bottom: 8px;
+        font-size: 14px;
+        line-height: 1.4;
+        position: relative;
+        padding-left: 15px; /* Espace pour le point */
+    }
+
+    .product-details li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #000; /* Couleur du point */
+        font-size: large;
+    }
+
+    /* Style pour le titre (premier li) */
+    .product-details li:first-child {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        padding-bottom: 10px;
+    }
+
+    /* Style pour l'emballage et le descriptif */
+    .product-details li span.label {
+        color: #000;
+        font-weight: 600; /* Semi-bold */
+    }
+
+    /* Style pour la valeur après les labels */
+    .product-details li span.value {
+        color: #666;
+    }
+    
+    
+</style>
+  
+{% endblock %}  

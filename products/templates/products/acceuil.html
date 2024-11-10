@@ -1,0 +1,485 @@
+<!-- templates/products/index.html -->
+{% extends 'products/base.html' %}
+{% load static %} <!-- Add this line to load the static template tag library -->
+
+{% block title %} Acceuil | Vialys {% endblock %}
+
+{% block content %}
+<div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover show-dots-xs nav-style-1 nav-inside nav-inside-plus nav-dark nav-lg nav-font-size-lg show-nav-hover mb-0"
+    data-plugin-options="{'autoplayTimeout': 7000}" data-dynamic-height="['500px','500px','500px','500px','500px']"
+    style="height: 500px;">
+    <div class="owl-stage-outer">
+        <div class="owl-stage " style="margin-top: 50px">
+            <!-- Carousel Slide 1 -->
+            <div class="owl-item position-relative overflow-hidden p-3"
+                style="background-image: url({% static 'images/38273@1x.png' %}); background-size: cover; background-position: center; ">
+                <div class="container position-relative z-index-3 h-100">
+                    <div class="row justify-content-start align-items-center h-100">
+                        <div class="col-lg-7">
+                            <div class="d-flex flex-column align-items-start mt-4">
+                                <!-- Added mt-4 for top margin -->
+                               
+                                <h1 class="text-white font-weight-extra-bold text-10 text-md-12-13 line-height-1 mb-2 appear-animation"
+                                    data-appear-animation="blurIn" data-appear-animation-delay="100"
+                                    data-plugin-options="{'minWindowWidth': 0}" style="font-size:75px !important;">
+                                    BAKING <br>PARTNERS</h1>
+                                <p class="text-4-5 text-white font-weight-light mb-4" data-plugin-animated-letter>
+                                    Vialys est spécialisée en ingrédients pour la boulangerie,<br> la viennoiserie et la pâtisserie. <br>
+                                    Depuis 2013 <br> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Carousel Slide 2 -->
+            <div class="owl-item position-relative"
+                style="background-image: url({% static 'images/112972@1x.png' %}); background-size: cover; background-position: center;">
+                <div class="container position-relative z-index-1 h-100">
+                    <div class="row justify-content-center align-items-center h-100">
+                        <div class="col-lg-7">
+                            <div class="d-flex flex-column align-items-start mt-4">
+                                <!-- Added mt-4 for top margin -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Carousel Slide 3 -->
+            <div class="owl-item position-relative"
+                style="background-image: url({% static 'images/image-28@1x.png' %}); background-size: cover; background-position: center;">
+                <div class="container position-relative z-index-1 h-100">
+                    <div class="row justify-content-center align-items-center h-100">
+
+                        <div class="col-lg-7">
+                            <div class="d-flex flex-column align-items-center">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="owl-nav">
+        <button type="button" role="presentation" class="owl-prev" aria-label="Previous"></button>
+        <button type="button" role="presentation" class="owl-next" aria-label="Next"></button>
+    </div>
+    <div class="owl-dots mb-5">
+        <button role="button" class="owl-dot active"><span></span></button>
+        <button role="button" class="owl-dot"><span></span></button>
+    </div>
+</div>
+
+<div class="container p-5">
+    <div class="row align-items-center"> <!-- Added align-items-center for vertical alignment -->
+        <!-- Left Side: Text -->
+        <div class="col-lg-6 order-2 order-lg-1 p-0">
+            <div class="h-100 d-flex align-items-center"> <!-- Ensure content takes full height -->
+                <div class="p-3">
+                    <img src="{% static 'images/vialyse.png' %}" loading="lazy" class="img-fluid mb-3"
+                        alt="Half Section Image" />
+                    <p class="mb-0">
+                        Vialys est spécialisée en ingrédients pour la boulangerie, la viennoiserie et la pâtisserie.
+                        Depuis 2013, Vialys se développe pour proposer une large gamme de produits de qualité et
+                        innovants pour une clientèle en recherche d’excellence. Aujourd’hui, Vialys a développé un
+                        important réseau de distribution et est présente dans les plus grandes villes du royaume
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Image -->
+        <div class="col-lg-6 order-1 order-lg-2 p-0">
+            <div class="h-100 d-flex justify-content-center align-items-center">
+                <!-- Ensure image takes full height -->
+                <img src="{% static 'images/image-10.png' %}" loading="lazy" class="img-fluid"
+                    style="max-width: 90%; max-height: 90%;" alt="Reduced Image">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-4 my-5">
+    <div class="row justify-content-center text-center mb-4 appear-animation" data-appear-animation="fadeInUpShorter"
+        data-appear-animation-delay="300">
+        <div class="col-lg-8">
+            <h2 class="font-weight-bold mb-3 mt-3">NOTRE ÉQUIPE</h2>
+            <p class="opacity-9 text-4">UNE ÉQUIPE PERFORMANTE, PROFESSIONNELLE ET À L’ÉCOUTE.</p>
+
+            <!-- Add the image here -->
+            <img src="{% static 'images/image-27@1x.png' %}" class="img-fluid my-4" alt="Notre Équipe"
+                style="max-width: 100%; height: auto;"> <!-- Replace with your image path -->
+        </div>
+    </div>
+</div>
+
+<section class="section section-height-2 mt-0 mb-3 border-0">
+    <div class="container my-5 p-3">
+        <div class="row justify-content-center text-center mb-4 appear-animation"
+            data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600">
+            <div class="col-lg-6">
+                <p class="opacity-9 text-5">VIALYS</p>
+                <h2 class="font-weight-bold mb-3 mt-3 text-color-dark">NOS ATOUTS</h2>
+            </div>
+        </div>
+
+        <div class="row mb-5 justify-content-center">
+            <div class="col-md-5 mb-5  appear-animation" data-appear-animation="fadeInUpShorter"
+                data-appear-animation-delay="300"> <!-- Adjusted column size -->
+                <div class="d-flex mb-3">
+                    <img src="{% static 'images/icones/partenariat-icon.png' %}" loading="lazy" alt="Partenariat"
+                        class="img-fluid mr-3" style="width: 80px; height: 80px;">
+                    <h3 class="text-primary font-weight-bold p-4">Sens du <br>partenariat</h3>
+                </div>
+                <p class="text-muted text-justify mb-5"> <!-- Changed mb-4 to mb-5 -->
+                    Notre volonté constante est de mettre notre savoir-faire au service de nos clients,
+                    d’apporter une qualité de services et des réponses adaptées pour satisfaire au mieux les
+                    besoins de notre clientèle tant au niveau technique que commercial.
+                </p>
+            </div>
+            <div class="col-md-5 mb-5  appear-animation" data-appear-animation="fadeInUpShorter"
+                data-appear-animation-delay="300"> <!-- Adjusted column size -->
+                <div class="d-flex mb-3">
+                    <img src="{% static 'images/icones/qualite-produits-icon.png' %}" alt="Qualité des Produits"
+                        class="img-fluid mr-3" style="width: 80px; height: 80px;">
+                    <h3 class="text-primary font-weight-bold p-4">Qualité des <br>produits</h3>
+                </div>
+                <p class="text-muted text-justify custom-paragraph"> <!-- Added custom class -->
+                    Notre volonté constante est de mettre notre savoir-faire au service de nos clients,
+                    d’apporter une qualité de services et des réponses adaptées pour satisfaire au mieux les
+                    besoins de notre clientèle tant au niveau technique que commercial.
+                </p>
+
+            </div>
+            <div class="col-md-5 mb-5  appear-animation" data-appear-animation="fadeInUpShorter"
+                data-appear-animation-delay="300"> <!-- Adjusted column size -->
+                <div class="d-flex mb-3">
+                    <img src="{% static 'images/icones/disponibilite-icon.png' %}" loading="lazy"
+                        alt="Disponibilité Permanente" class="img-fluid mr-3" style="width: 80px; height: 80px;">
+                    <h3 class="text-primary font-weight-bold p-4">Disponibilité<br> permanente</h3>
+                </div>
+                <p class="text-muted text-justify mb-5"> <!-- Changed mb-4 to mb-5 -->
+                    Nous assurons un contact direct et un dialogue permanent avec nos clients quelle que
+                    soit leur implantation.
+                </p>
+            </div>
+            <div class="col-md-5 mb-5  appear-animation" data-appear-animation="fadeInUpShorter"
+                data-appear-animation-delay="300"> <!-- Adjusted column size -->
+                <div class="d-flex mb-3">
+                    <img src="{% static 'images/icones/assistance-technique-icon.png' %}" loading="lazy"
+                        alt="Assistance Technique" class="img-fluid mr-3" style="width: 80px; height: 80px;">
+                    <h3 class="text-primary font-weight-bold p-4">Assistance<br> technique</h3>
+                </div>
+                <p class="text-muted text-justify mb-5"> <!-- Changed mb-4 to mb-5 -->
+                    Nous assurons une assistance technique performante, à l’écoute, et toujours disponible
+                    pour trouver des solutions.
+                </p>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container py-4 my-5">
+    <div class="row justify-content-center text-center mb-4 appear-animation" data-appear-animation="fadeInUpShorter"
+        data-appear-animation-delay="300">
+        <div class="col-lg-8">
+            <p class="opacity-9 text-4">VIALYS</p>
+            <h2 class="font-weight-bold mb-3 mt-3">NOS VALEURS </h2>
+        </div>
+    </div>
+    <div class="row featured-boxes featured-boxes-style-4 justify-content-center">
+        <div class="col-md-6 col-lg-4"> <!-- Changed col-lg-3 to col-lg-4 for wider columns -->
+            <div class="featured-box featured-box-primary featured-box-effect-4 appear-animation"
+                data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="200">
+                <div class="box-content px-4 text-center">
+                    <i class="icon-featured  fas fa-clipboard-check icons text-12"></i>
+                    <h4 class="font-weight-bold text-color-dark pb-1 mb-2">La performance</h4>
+                    <p class="mb-0">
+                        <span style="display: block;">Efficacité</span>
+                        <span style="display: block;">Réactivité</span>
+                        <span style="display: block;">Productivité</span>
+                        <span style="display: block;">Qualité</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4  featured-box-effect-4 appear-animation" data-appear-animation="fadeInLeftShorter"
+            data-appear-animation-delay="200"> <!-- Changed col-lg-3 to col-lg-4 for wider columns -->
+            <div class="featured-box featured-box-primary featured-box-effect-4 appear-animation"
+                data-appear-animation="fadeIn">
+                <div class="box-content px-4 text-center">
+                    <i class="icon-featured fas fa-handshake icons text-12"></i>
+                    <h4 class="font-weight-bold text-color-dark pb-1 mb-2">La solidarité</h4>
+                    <p class="mb-0">
+                        <span style="display: block;">Plus le groupe évolue, plus nous évoluons</span>
+                        <span style="display: block;">Prise de risque et apprentissage collectif</span>
+                        <span style="display: block;">Assistance aux collègues</span>
+                        <span style="display: block;">Encadrement hiérarchique</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4  featured-box-effect-4 appear-animation" data-appear-animation="fadeInLeftShorter"
+            data-appear-animation-delay="200"> <!-- Changed col-lg-3 to col-lg-4 for wider columns -->
+            <div class="featured-box featured-box-primary featured-box-effect-4 appear-animation"
+                data-appear-animation="fadeIn">
+                <div class="box-content px-4 text-center">
+                    <i class="icon-featured fas fa-praying-hands icons text-12"></i>
+                    <h4 class="font-weight-bold text-color-dark pb-1 mb-2">Le respect</h4>
+                    <p class="mb-0">
+                        <span style="display: block;">Travail, collaborateurs et engagements</span>
+                        <span style="display: block;">Partenaires, fournisseurs et clients</span>
+                        <span style="display: block;">Éthique, intégrité et honnêteté</span>
+                        <span style="display: block;">Environnement et croissance durable</span>
+                        <span style="display: block;">Civisme et citoyenneté</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<section class="section section-height-2 mt-0 mb-3 border-0">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="owl-carousel owl-theme stage-margin stage-margin-lg nav-style-2 mb-0"
+                data-plugin-options="{'items': 1, 'margin': 100, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 100}">
+                <div class="text-center">
+                    <p class="lead lead-2 text-7">ILS NOUS FONT CONFIANCE</p>
+                    <p class="lead lead-2 font-weight-semibold mb-0 text-10 p-4">RÉFÉRENCES</p>
+                </div>
+            </div>
+            <div class="owl-carousel owl-theme stage-margin nav-style-1"
+                data-plugin-options="{
+                    'items': 5, 
+                    'margin': 10, 
+                    'loop': true, 
+                    'nav': true, 
+                    'dots': false, 
+                    'stagePadding': 40,
+                    'autoplay': true,
+                    'autoplayTimeout': 3000,
+                    'autoplayHoverPause': true,
+                    'smartSpeed': 1000
+                }">
+                <div class="image-container card card-border card-border-bottom bg-color-light"
+                    style="border: 2px solid grey; border-bottom: none; padding: 5px; text-align: center;">
+                    <img alt="" class="hover-zoom img-fluid rounded" loading="lazy"
+                        src="{% static 'images/design-sans-titre--12-@1x.png' %}"
+                        style="height: 200px; object-fit: cover;">
+                </div>
+
+                <div class="image-container card card-border card-border-bottom bg-color-light"
+                    style="border: 2px solid grey; border-bottom: none; padding: 5px; text-align: center;">
+                    <img alt="" class="hover-zoom img-fluid rounded" loading="lazy"
+                        src="{% static 'images/design-sans-titre--10-@1x.png' %}"
+                        style="height: 200px; object-fit: cover;">
+                </div>
+
+                <div class="image-container card card-border card-border-bottom bg-color-light"
+                    style="border: 2px solid grey; border-bottom: none; padding: 5px; text-align: center;">
+                    <img alt="" class="hover-zoom img-fluid rounded" loading="lazy"
+                        src="{% static 'images/image-7@1x.png' %}" style="height: 200px; object-fit: cover;">
+                </div>
+
+                <div class="image-container card card-border card-border-bottom bg-color-light"
+                    style="border: 2px solid grey; border-bottom: none; padding: 5px; text-align: center;">
+                    <img alt="" class="hover-zoom img-fluid rounded" loading="lazy"
+                        src="{% static 'images/image-11@1x.png' %}" style="height: 200px; object-fit: cover;">
+                </div>
+
+                <div class="image-container card card-border card-border-bottom bg-color-light"
+                    style="border: 2px solid grey; border-bottom: none; padding: 5px; text-align: center;">
+                    <img alt="" class="hover-zoom img-fluid rounded" loading="lazy"
+                        src="{% static 'images/image-9@1x.png' %}" style="height: 200px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.hover-zoom {
+    transition: transform 0.3s ease;
+}
+
+.hover-zoom:hover {
+    transform: scale(1.1);
+}
+
+.owl-carousel .owl-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+</style>
+
+<script>
+$(document).ready(function(){
+    $('.owl-carousel').owlCarousel();
+});
+</script>
+<!-- CSS for hover zoom effect -->
+<style>
+    .hover-zoom {
+        transition: transform 0.5s ease;
+    }
+
+    .hover-zoom:hover {
+        transform: scale(0.8);
+    }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="row justify-content-center text-center mb-4 appear-animation" data-appear-animation="fadeInUpShorter"
+        data-appear-animation-delay="400">
+        <div class="col-lg-8">
+            <p class="opacity-9 text-4">RECETTES & CONSEILS </p>
+            <h2 class="font-weight-bold mb-3 mt-3">CONSEILS DE PROS</h2>
+            <p>Découvrez des astuces et conseils professionnels pour améliorer vos compétences en cuisine. Que vous
+                soyez débutant ou expérimenté, nos experts vous partagent leurs meilleures pratiques pour des résultats
+                toujours réussis. Laissez-vous guider par des techniques éprouvées et des idées créatives pour
+                transformer vos plats quotidiens en véritables œuvres d'art culinaire.</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="owl-carousel owl-theme stage-margin nav-style-1"
+        data-plugin-options="{'items': 3, 'margin': 5, 'loop': false, 'nav': true, 'dots': false, 'stagePadding': 20}">
+
+        <!-- First Item with YouTube Video -->
+        <div class="card" style="width: 100%; border: none; border-radius: 0;">
+            <div class="card-body" style="position: relative; padding: 0;">
+                <!-- Embedding a YouTube video -->
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/OezPlFK2n9w"
+                    title="Amazing Places to Visit in the World" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- Second Item with YouTube Video -->
+        <div class="card" style="width: 100%; border: none; border-radius: 0;">
+            <div class="card-body" style="position: relative; padding: 0;">
+                <!-- Embedding a YouTube video -->
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/ZZoXDofgNLM"
+                    title="How to Make the Perfect Scrambled Eggs" frameborder="0" loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- Third Item with YouTube Video -->
+        <div class="card" style="width: 100%; border: none; border-radius: 0;">
+            <div class="card-body" style="position: relative; padding: 0;">
+                <!-- Embedding a YouTube video -->
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/HAaNy8LXXo8" loading="lazy"
+                    title="Relaxing Music for Stress Relief" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- Fourth Item with YouTube Video -->
+        <div class="card" style="width: 100%; border: none; border-radius: 0;">
+            <div class="card-body" style="position: relative; padding: 0;">
+                <!-- Embedding a YouTube video -->
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/JoM6miHyrk0" loading="lazy"
+                    title="The Science of Dark Matter" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+        <!-- Five Item with YouTube Video -->
+        <div class="card" style="width: 100%; border: none; border-radius: 0;">
+            <div class="card-body" style="position: relative; padding: 0;">
+                <!-- Embedding a YouTube video -->
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/OezPlFK2n9w" loading="lazy"
+                    title="The Science of Dark Matter" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<section class="bg-image" >
+    <div class="logo-container">
+        <div>
+            <img src="{% static 'images/sans-titre-2-0000s-0001-calque-1@1x.png' %}" loading="lazy" alt="Logo 1" class="logo-img">
+        </div>
+        <div>
+            <img src="{% static 'images/sans-titre-2-0000s-0002-calque-2@1x.png' %}" loading="lazy" alt="Logo 2" class="logo-img">
+        </div>
+        <div>
+            <img src="{% static 'images/sans-titre-2-0000s-0003-calque-3@1x.png' %}" loading="lazy" alt="Logo 3" class="logo-img">
+        </div>
+        <div>
+            <img src="{% static 'images/sans-titre-2-0000s-0004-calque-4@1x.png' %}" loading="lazy" alt="Logo 4" class="logo-img">
+        </div>
+    </div>
+</section>
+
+<style>
+.bg-image {
+        background-image: url('{% static "images/groupe-de-masques-9@1x.png" %}');
+        background-color: white;
+        background-size: cover;
+        background-position: center;
+        min-height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+    }
+
+.logo-container {
+    background: white;
+    padding: 20px;
+    width: 720px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: -311px;
+}
+
+.logo-img {
+    height: auto;
+    max-width: 90px;
+    object-fit: contain;
+}
+
+@media screen and (max-width: 768px) {
+    .logo-container {
+        width: 95%;
+        padding: 10px;
+    }
+    
+    .logo-img {
+        max-width: 80px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo-container {
+        width: 100%;
+        padding: 5px;
+    }
+    
+    .logo-img {
+        max-width: 60px;
+    }
+}</style>
+
+
+{% endblock %}

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Your Site Title{% endblock %}</title>
+    <meta name="keywords" content="WebSite Template" />
+    <meta name="description" content="Your Site Description">
+    <meta name="author" content="Your Name">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+
+    <!-- Web Fonts -->
+    <link id="googleFonts"
+        href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800%7CShadows+Into+Light&display=swap"
+        rel="stylesheet" type="text/css">
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/animate/animate.compat.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/owl.carousel/assets/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/magnific-popup/magnific-popup.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.min.css' %}">
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/theme-elements.css' %}">
+    <link rel="stylesheet" href="{% static 'css/theme-blog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/theme-shop.css' %}">
+    <!-- Skin CSS -->
+    <link id="skinCSS" rel="stylesheet" href="{% static 'css/skins/default.css' %}">
+    <link id="skinCSS" rel="stylesheet" href="{% static 'css/skins/skin-landing.css' %}">
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- Demo CSS -->
+    <link rel="stylesheet" href="{% static 'css/footer.css'%}">
+    <link rel="stylesheet" href="{% static 'css/alert_style.css'%}">
+    <link rel="stylesheet" href="{% static 'css/header_style.css'%}">
+    <!-- Montserrat font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+<!-- SweetAlert2 CSS and JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+
+    {% block extra_head %}{% endblock %} <!-- Block for extra head content -->
+    <style>
+        .navbar .nav-link {
+            font-weight: 600 !important;
+        }
+    </style>
+</head>
+
+<body data-plugin-page-transition>
+    <div class="body">
+
+        <header>
+            <div id="header" class="header-nav header-effect-shrink"
+                data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 120, 'stickyHeaderContainerHeight': 70}">
+                
+                <nav class="navbar navbar-expand-lg fixed-top">
+                    <div class="container-fluid p-0">
+                        <a class="navbar-brand" href="{% url 'acceuil' %}"><i>VIALYS</i></a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link {% if request.resolver_match.url_name == 'acceuil' %}active{% endif %}" 
+                                       aria-current="page" href="{% url 'acceuil' %}">ACCUEIL</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link {% if request.resolver_match.url_name == 'marque' %}active{% endif %}" 
+                                       href="{% url 'marque' %}">PRODUITS</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url 'product-list' %}">Tous les produits</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        {% for category in categories %}
+                                        <li>
+                                            <a class="dropdown-item {% if request.resolver_match.url_name == 'category-products' and category.id == request.resolver_match.kwargs.category_id %}active{% endif %}" 
+                                               href="{% url 'category-products' category.id %}">
+                                                {{ category.name }}
+                                            </a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a class="nav-link {% if request.resolver_match.url_name == 'service_commercial' %}active{% endif %}" 
+                                       href="{% url 'service_commercial' %}">SERVICE COMMERCIAL</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" 
+                                       href="{% url 'contact' %}">ASSISTANCE</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {% if request.resolver_match.url_name == 'blog_list' %}active{% endif %}" 
+                                       href="{% url 'blog_list' %}">BAKING NEWS</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" 
+                                       href="{% url 'contact' %}">CONTACT</a>
+                                </li>
+                            </ul>
+                               <!-- Search div -->
+                               <div
+                               class="header-nav-features header-nav-features-no-border header-nav-features-lg-show-border order-1 order-lg-2">
+                               <div class="header-nav-feature header-nav-features-search d-inline-flex">
+                                   <a href="#" class="header-nav-features-toggle text-decoration-none"
+                                       data-focus="headerSearch" aria-label="Search">
+                                       <!-- Add margin-right to the icon -->
+                                       <i class="fas fa-search header-nav-top-icon" style="margin-right: 20px;"></i>
+                                   </a>
+                                   <div class="header-nav-features-dropdown" id="headerTopSearchDropdown">
+                                       <form role="search" action="{% url 'product-list' %}" method="get">
+                                           <div class="simple-search input-group">
+                                               <input class="form-control text-1" id="headerSearch" name="search"
+                                                   type="search" value="{{ search_query }}" placeholder="Search...">
+                                               <button class="btn" type="submit" aria-label="Search">
+                                                   <i class="fas fa-search header-nav-top-icon"></i>
+                                               </button>
+                                           </div>
+                                       </form>
+                                   </div>
+                               </div>
+                           </div>
+                           <!-- end Search div -->
+                        </div>
+                    </div>
+                </nav>
+                
+                <!-- Offcanvas Menu -->
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu"
+                    aria-labelledby="offcanvasMenuLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <form role="search" action="{% url 'product-list' %}" method="get">
+                            <div class="simple-search input-group">
+                                <input class="form-control text-1" id="headerSearch" name="search" type="search"
+                                    value="{{ search_query }}" placeholder="Search...">
+                                <button class="btn" type="submit" aria-label="Search">
+                                    <i class="fas fa-search header-nav-top-icon"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'acceuil' %}active{% endif %}"
+                                    href="{% url 'acceuil' %}">ACCUEIL</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'marque' %}active{% endif %}"
+                                    href="{% url 'marque' %}">PRODUITS</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{% url 'product-list' %}">Tous les produits</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    {% for category in categories %}
+                                    <li>
+                                        <a class="dropdown-item {% if request.resolver_match.url_name == 'category-products' and category.id == request.resolver_match.kwargs.category_id %}active{% endif %}" 
+                                           href="{% url 'category-products' category.id %}">
+                                            {{ category.name }}
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'service_commercial' %}active{% endif %}"
+                                    href="{% url 'service_commercial' %}">SERVICE COMMERCIAL</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
+                                    href="{% url 'contact' %}">ASSISTANCE</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'blog_list' %}active{% endif %}"
+                                    href="{% url 'blog_list' %}">BAKING NEWS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
+                                    href="{% url 'contact' %}">CONTACT</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <style>
+                /* For main navigation */
+                .dropdown:hover .dropdown-menu {
+                    display: block;
+                }
+                
+                .dropdown-menu {
+                    margin-top: 0;
+                }
+                
+                /* For offcanvas menu */
+                .offcanvas .dropdown:hover .dropdown-menu {
+                    position: static;
+                    float: none;
+                    border: none;
+                    padding-left: 1rem;
+                    background: transparent;
+                }
+                
+                .offcanvas .dropdown-menu {
+                    margin-top: 0;
+                    box-shadow: none;
+                }
+                
+                .offcanvas .dropdown-divider {
+                    border-color: rgba(0,0,0,0.1);
+                }
+                </style>
+                
+              
+                
+              
+            </div>
+        </header>
+
+        <div role="main" class="main">
+            {% block content %}{% endblock %} <!-- Block for page-specific content -->
+        </div>
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h5>VIALYS</h5>
+                        <p>Vialys est spécialisée en ingrédients pour la boulangerie, la viennoiserie et la pâtisserie. Depuis 2013</p>
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/Chhiwatealmoumtaza/?ref=ts&fref=ts"><img
+                                    src="{% static 'images/icones/Facebook_Logo_2023.png' %}" alt="Facebook"></a>
+
+                            <a href="https://www.youtube.com/channel/UCcVM3HXquoA24BWvioe6WcQ"><img
+                                    src="{% static 'images/icones/1384060.png' %}" alt="YouTube"></a>
+                        </div>
+                    </div>
+        
+                    <div class="footer-section">
+                        <h5>Entreprise</h5>
+                        <ul>
+                            <li><a href="{% url 'acceuil' %}">Présentation</a></li>
+                            <li><a href="{% url 'marque' %}">Produits</a></li>
+                            <li><a href="{% url 'service_commercial' %}">Notre Equipe</a></li>
+                            <li><a href="{% url 'blog_list' %}">Baking News</a></li>
+                            <li><a href="{% url 'contact' %}">Contacts</a></li>
+                        </ul>
+                    </div>
+        
+                    <div class="footer-section">
+                        <h5>Assistance</h5>
+                        <ul>
+                            <li><a href="{% url 'service_commercial' %}">FAQ</a></li>
+                            <li><a href="{% url 'contact' %}">Assistance technique</a></li>
+                            <li><a href="{% url 'blog_list' %} ">Recettes & conseils</a></li>
+                        </ul>
+                    </div>
+        
+                    <div class="footer-section">
+                        <h5>Contacts</h5>
+                        <p>119, Avenue de L'Armée Royale -<br> Espace Sofia - Casablanca - Maroc</p>
+                        <p>+212 5 22 44 99 30</p>
+                        <p>+212 5 22 44 99 46</p>
+                        <p>contact@vialys.ma</p>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© VIALYS 2024 All rights reserved.</p>
+                <p> <a href="https://bazartagency.com">Powered by Bazart Agency</a></p>
+            </div>
+        </footer>
+        
+        <style>
+        .footer {
+            background-color: #052d70;
+            color: white;
+            padding: 4rem 0;
+            font-size: 0.85rem;
+        }
+        
+        .container-fluid {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        
+        .footer-content {
+            
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 710px;
+            margin: 42px auto;
+            gap: 1.1rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            /* min-width: 160px;
+            max-width: 260px; */
+            margin-right: -22px;
+            margin-left: -22px;
+        }
+        
+        .footer h5 {
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .footer p {
+        
+            color: white;
+            font-size: 0.8rem;
+            /* line-height: 1.4; */
+            padding-left: 39px;
+            margin-bottom: 0.5rem;
+           
+        }
+        
+        .footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        .social-icons {
+            padding-left: 22px;
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icon {
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .newsletter {
+            margin-top: 1rem;
+            position: relative;
+        }
+        
+        .newsletter input {
+            width: 100%;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 3px;
+            font-size: 0.85rem;
+        }
+        
+        .newsletter button {
+            position: absolute;
+            right: 3px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0.3rem 0.8rem;
+            background-color: #52c4c4;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 992px) {
+            .footer-content {
+                justify-content: flex-start;
+            }
+            
+            .footer-section {
+                flex: 0 0 calc(50% - 1.5rem);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .footer-section {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+        </style>
+
+
+    </div>
+    <!-- SweetAlert2 CSS and JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+    <!-- Vendor -->
+    <script src="{% static 'vendor/plugins/js/plugins.min.js'%}"></script>
+    <!-- Theme Base, Components and Settings -->
+    <script src="{% static 'js/theme.js'%}"></script>
+    <!-- Theme Custom -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    <!-- Theme Initialization Files -->
+    <script src="{% static 'js/theme.init.js' %}"></script>
+    <script>
+        function toggleSearch() {
+            $('.search-bar').toggleClass('show'); // Toggle search bar visibility
+            $('.search-bar').focus(); // Focus on the search bar when shown
+        }
+    </script>
+    {% block extra_scripts %}{% endblock %} <!-- Block for extra scripts -->
+</body>
+
+</html>
