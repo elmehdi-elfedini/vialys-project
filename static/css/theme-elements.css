@@ -1534,9 +1534,6 @@ Theme Version:	12.0.0
 	filter: brightness(0) invert(1);
 }
 
-.highlighted-word.highlighted-word-animation-1.highlighted-word-animation-1-dark:after {
-	background: url(../img/pencil-blue-line-dark.png);
-}
 
 .highlighted-word.highlighted-word-animation-1.highlighted-word-animation-1-no-rotate:after {
 	transform: rotate(0);
