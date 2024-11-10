@@ -24,10 +24,10 @@ def marque(request):
 
 
 def product_list(request):
-    search_query = request.GET.get('search', '')  
-    selected_brand = request.GET.get('brand', '') 
-    selected_tag = request.GET.get('tag', '')  
-    selected_category = request.GET.get('category', '')  
+    search_query = request.GET.get('search', '')
+    selected_brand = request.GET.get('brand', '')
+    selected_tag = request.GET.get('tag', '')
+    selected_category = request.GET.get('category', '')
 
     categories = Category.objects.prefetch_related('products__tags').all()
     category_products = {}
@@ -36,9 +36,9 @@ def product_list(request):
     if selected_brand:
         try:
             brand_obj = Brand.objects.get(pk=selected_brand)
-            products = products.filter(brand=brand_obj)  
+            products = products.filter(brand=brand_obj)
         except Brand.DoesNotExist:
-            products = Product.objects.none()  
+            products = Product.objects.none()
 
     if selected_tag:
         products = products.filter(tags__name__iexact=selected_tag)
@@ -46,66 +46,68 @@ def product_list(request):
     if selected_category:
         try:
             category_obj = Category.objects.get(pk=selected_category)
-            products = products.filter(category=category_obj) 
-            category_products[category_obj] = products.distinct() 
+            products = products.filter(category=category_obj)
+            category_products[category_obj] = products.distinct()
         except Category.DoesNotExist:
-            products = Product.objects.none()  
+            products = Product.objects.none()
 
     if search_query:
         products = products.filter(
-            Q(title__icontains=search_query) | 
+            Q(title__icontains=search_query) |
             Q(description__icontains=search_query) |
             Q(emballage__icontains=search_query)
-        ).distinct()  
+        ).distinct()
 
     if not category_products:
         for category in categories:
             category_products[category] = products.filter(category=category).distinct()
 
     brands = Brand.objects.all()
-    tags = Tag.objects.all()
+    
+    brand_products = Product.objects.all()
+    if selected_brand:
+        brand_products = brand_products.filter(brand=selected_brand)
+    if selected_category:
+        brand_products = brand_products.filter(category=selected_category)
+
+    tags = Tag.objects.filter(products__in=brand_products).distinct()
 
     return render(request, 'products/product_list.html', {
         'category_products': category_products,
         'search_query': search_query,
         'selected_brand': selected_brand,
         'selected_tag': selected_tag,
-        'selected_category': selected_category,  
+        'selected_category': selected_category,
         'categories': categories,
-        'brands': brands, 
+        'brands': brands,
         'tags': tags, 
     })
 
 
+
 def category_products(request, category_id):
-    # Retrieve the category object for the given category_id
     try:
         category = Category.objects.get(id=category_id)
     except Category.DoesNotExist:
         messages.error(request, 'Category not found.')
         return redirect('product-list')
 
-    # Get the query parameters for search, brand, tag, and category
     search_query = request.GET.get('search', '')
     selected_brand = request.GET.get('brand', '')
     selected_tag = request.GET.get('tag', '')
 
-    # Initialize the products to all products in the selected category
     products = Product.objects.filter(category=category)
 
-    # Apply brand filter if selected
     if selected_brand:
         try:
             brand_obj = Brand.objects.get(pk=selected_brand)
             products = products.filter(brand=brand_obj)
         except Brand.DoesNotExist:
-            products = Product.objects.none()  # No products if brand does not exist
+            products = Product.objects.none() 
 
-    # Apply tag filter if selected
     if selected_tag:
         products = products.filter(tags__name__iexact=selected_tag)
 
-    # Apply search filter if search query is present
     if search_query:
         products = products.filter(
             Q(title__icontains=search_query) | 
@@ -113,22 +115,24 @@ def category_products(request, category_id):
             Q(emballage__icontains=search_query)
         ).distinct()
 
-    # Get all categories, brands, and tags to show in the filters
     categories = Category.objects.all()
     brands = Brand.objects.all()
-    tags = Tag.objects.all()
 
-    # Render the product list with the selected filters and category information
+    brand_products = Product.objects.filter(category=category)
+    if selected_brand:
+        brand_products = brand_products.filter(brand=selected_brand)
+    all_tags_for_brand = Tag.objects.filter(products__in=brand_products).distinct()
+
     return render(request, 'products/product_list.html', {
         'category_products': {category: products.distinct()},
         'categories': categories,
         'brands': brands,
-        'tags': tags,
+        'tags': all_tags_for_brand,  
         'search_query': search_query,
         'selected_brand': selected_brand,
         'selected_tag': selected_tag,
-        'selected_category': category_id,  # The current selected category
-        'current_category': category,  # Pass the current category object for display
+        'selected_category': category_id,  
+        'current_category': category,  
     })
 
 def create_order(request):
