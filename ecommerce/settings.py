@@ -137,7 +137,13 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
 LANGUAGE_CODE = 'fr'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
