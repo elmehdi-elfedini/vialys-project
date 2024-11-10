@@ -1550,13 +1550,10 @@ Theme Version:	12.0.0
 .highlighted-word.highlighted-word-animation-1.highlighted-word-animation-1-2:after {
 	animation-name: pencilAnimation2;
 	right: calc(100% - 115px);
-	background: url(../img/pencil-blue-line-2.png);
 	background-repeat: no-repeat;
 }
 
-.highlighted-word.highlighted-word-animation-1.highlighted-word-animation-1-2-dark:after {
-	background-image: url(../img/pencil-blue-line-2-dark.png);
-}
+
 
 .highlighted-word.highlighted-word-rotate {
 	transform: rotate(-15deg);
@@ -1613,9 +1610,7 @@ Theme Version:	12.0.0
 	position: relative;
 }
 
-.arrow.arrow-light {
-	background-image: url(../img/arrows-dark.png);
-}
+
 
 .arrow.vtl {
 	background-position: 0 0;
@@ -6324,9 +6319,7 @@ hr.pattern:after, .divider.pattern:after {
 	width: 100%;
 }
 
-hr.pattern.pattern-2:after, .divider.pattern.pattern-2:after {
-	background-image: url(../img/patterns/az_subtle.png);
-}
+
 
 @keyframes dividerProgress25 {
 	from {
@@ -8992,9 +8985,7 @@ label.required:after {
 	background-image: none !important;
 }
 
-.form-select.form-select-icon-light {
-	background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>");
-}
+
 
 .form-switch.form-switch-sm {
 	margin-bottom: 8px;
@@ -11243,10 +11234,6 @@ ul.thumbnail-gallery li {
 	transform: scale(1.1);
 }
 
-/* Lazy */
-.lazy-bg {
-	background-image: url(img/lazy.png);
-}
 
 /* Thumb Gallery */
 .thumb-gallery-wrapper .thumb-gallery-thumbs .owl-item {
@@ -13072,7 +13059,6 @@ p.drop-caps.drop-caps-style-2:first-letter {
 
 .curved-border:after {
 	content: '';
-	background-image: url(../img/curved-border.svg);
 	background-size: 100% 100%;
 	background-position: center;
 	position: absolute;
@@ -13964,7 +13950,6 @@ Credits: Codyhouse (https://codyhouse.co/gem/360-degrees-product-viewer)
 
 /* Vertical Lines */
 .vertical-lines:not(.vertical-lines-after) {
-	background-image: url(../img/vertical-lines.svg);
 	background-repeat: repeat;
 	background-position: 50%;
 	pointer-events: none;
@@ -13979,7 +13964,6 @@ Credits: Codyhouse (https://codyhouse.co/gem/360-degrees-product-viewer)
 	display: block;
 	position: absolute;
 	z-index: 1;
-	background-image: url(../img/vertical-lines.svg);
 	background-repeat: repeat;
 	background-position: 50%;
 	top: 0;
@@ -13989,13 +13973,7 @@ Credits: Codyhouse (https://codyhouse.co/gem/360-degrees-product-viewer)
 	pointer-events: none;
 }
 
-.vertical-lines.vertical-lines-light:not(.vertical-lines-after) {
-	background-image: url(../img/vertical-lines-light.svg);
-}
 
-.vertical-lines.vertical-lines-light.vertical-lines-after:after {
-	background-image: url(../img/vertical-lines-light.svg);
-}
 
 /* OffCanvas */
 .offcanvas {
