@@ -80,7 +80,7 @@
                                     <a class="nav-link {% if request.resolver_match.url_name == 'marque' %}active{% endif %}" 
                                        href="{% url 'marque' %}">PRODUITS</a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{% url 'product-list' %}">Tous les produits</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'marque' %}">Tous les produits</a></li>
                                         <li><hr class="dropdown-divider"></li>
                                         {% for category in categories %}
                                         <li>
@@ -163,7 +163,7 @@
                                 <a class="nav-link {% if request.resolver_match.url_name == 'marque' %}active{% endif %}"
                                     href="{% url 'marque' %}">PRODUITS</a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{% url 'product-list' %}">Tous les produits</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'marque' %}">Tous les produits</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     {% for category in categories %}
                                     <li>
