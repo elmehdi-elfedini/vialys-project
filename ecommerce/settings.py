@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    'whitenoise.runserver_nostatic',  # Add this before 'django.contrib.staticfiles'
     "django.contrib.staticfiles",
     "ckeditor", # For the blog editor 
     "ckeditor_uploader", # For blog editor uploader
