@@ -13774,9 +13774,7 @@ Credits: Codyhouse (https://codyhouse.co/gem/360-degrees-product-viewer)
 	position: absolute;
 }
 
-.particle.particle-dots {
-	-webkit-mask-image: url(../img/particle-dot.svg);
-	mask-image: url(../img/particle-dot.svg);
+.particle.particle-dots {	
 	z-index: 0;
 	-webkit-mask-size: 18px;
 }
