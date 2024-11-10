@@ -1,17 +1,7 @@
 from pathlib import Path
 import os
 
-LANGUAGE_CODE = 'fr'
-BASE_DIR = Path(__file__).resolve().parent.parent
 
-# For media files 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
 
 
 # Quick-start development settings - unsuitable for production
@@ -50,6 +40,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware", # for whitenoise static file in the production you should remove it 
 ]
 
 ROOT_URLCONF = "ecommerce.urls"
@@ -82,6 +73,7 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
 
 
 # Password validation
@@ -144,3 +136,17 @@ CKEDITOR_CONFIGS = {
         'image_upload_url': '/ckeditor/upload/',  # Image upload URL
     },
 }
+
+"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+LANGUAGE_CODE = 'fr'
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# For media files 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
