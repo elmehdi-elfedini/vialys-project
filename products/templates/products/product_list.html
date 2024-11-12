@@ -13,7 +13,7 @@
                 Swal.fire({
                     icon: '{% if message.tags == "success" %}success{% elif message.tags == "error" %}error{% endif %}',
                     title: '{% if message.tags == "success" %}{{ message }}{% elif message.tags == "error" %}Error!{% endif %}',
-                    html: `{% if message.tags == "success" %}Merci d'avoir choisi notre service. Nous avons bien reçu votre demande et elle est en cours de traitement.{% else %}{{ message }}{% endif %}`,
+                    html: {% if message.tags == "success" %}Merci d'avoir choisi notre service. Nous avons bien reçu votre demande et elle est en cours de traitement.{% else %}{{ message }}{% endif %},
                     confirmButtonText: 'OK',
                     customClass: {
                         popup: 'swal2-show',
@@ -28,17 +28,40 @@
 {% endif %}
 
 
+<style>
+    body,
+    html {
+        /* margin-bottom: 20px; */
+        padding: 0;
+        height: 100%;
+    }
+    @media (max-width: 991px) {
+  .owl-carousel .owl-item {
+    width: 100% !important; 
+  }
+}
 
+@media (max-width: 767px) {
+  .owl-carousel .owl-item {
+    width: 100% !important;
+  }
+}
+
+</style>
 
 <div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover show-dots-xs nav-style-1 nav-inside nav-inside-plus nav-dark nav-lg nav-font-size-lg show-nav-hover mb-0"
-    data-plugin-options="{'autoplayTimeout': 7000}" data-dynamic-height="['300px','300px','300px','300px','300px']"
-    style="height: 500px;">
+    data-plugin-options="{'autoplayTimeout': 7000}" data-dynamic-height="['350px','350px','350px','350px','350px']"
+    style="height: 550px;margin-top: 50px ;width: 100% !important;">
     <div class="owl-stage-outer">
         <div class="owl-stage">
             <!-- Carousel Slide 1 -->
             <div class="owl-item position-relative overflow-hidden"
+            style="background-image: url({% static 'images/sans-titre-4@1x.png' %}); background-size: cover; background-position: center; height:  100% !important;">         
+        </div>
+            <div class="owl-item position-relative overflow-hidden"
                 style="background-image: url({% static 'images/38273@1x.png' %}); background-size: cover; background-position: center;">         
             </div>
+
             <!-- Carousel Slide 2 -->
             <div class="owl-item position-relative"
                 style="background-image: url({% static 'images/112972@1x.png' %}); background-size: cover; background-position: center; ">             
@@ -66,20 +89,24 @@
                 <hr style="flex-grow: 1; border: 1px solid #5AA9E4; margin: 0; margin-top: 40px;"> 
             </div>
             
-            <!-- Display brand buttons -->
+      <!-- Display brand buttons -->
             <div class="filter-wrapper py-2 bg-light left-0 z-index-3 w-100">
-                <div class="brands mb-3">
+                <div class="brands row mb-3">
                     {% for brand in category.brands.all %}
-                        <a href="?brand={{ brand.id }}&category={{ selected_category|default:category.id }}" 
-                           class="btn {% if brand.id|stringformat:"s" == selected_brand %}btn-primary{% else %}btn-light{% endif %} 
-                           rounded-0 btn-lg me-2">{{ brand.name }}</a>
+                        <div class="col-6 col-md-4 col-lg-3 mb-2">
+                            <a href="?brand={{ brand.id }}&category={{ selected_category|default:category.id }}" 
+                            class="btn {% if brand.id|stringformat:"s" == selected_brand %}btn-primary{% else %}btn-light{% endif %} 
+                            rounded-0 btn-lg w-100">
+                                {{ brand.name }}
+                            </a>
+                        </div>
                     {% endfor %}
                 </div>
-                
             </div>
+
             
 
-     <!-- Display tags -->
+                <!-- Display tags -->
         <div class="container py-4 p-0">
             <h4 class="text-muted">Choisir catégorie :</h4>
             <div style="border: 2px solid grey !important; border-radius: 15px !important; padding: 1rem !important;">
@@ -91,6 +118,7 @@
                 {% endfor %}
             </div>
         </div>
+
         </div>
 
      <!-- Display products -->
@@ -155,14 +183,12 @@
                 <p class="opacity-9 text-4">COMMANDEZ EN LIGNE
                 </p>
                 <h2 class="font-weight-bold mb-3 mt-3 text-10">Formulaire de Commande</h2>
-                <p class="opacity-9 text-4">Lorem Ipsum is simply dummy text of the printing and typesetting
-                    industry. Lorem
-                    Ipsum has been the industry's standard text ever since the 1500s.
+                <p class="opacity-9 text-4">N'hésitez pas à nous contacter à tout moment.
                 </p>
             </div>
         </div>
 
-        <div style="margin-bottom: -300px;">
+        <div style="margin-bottom: -120px;">
 
             <div class="card mb-4 bg-transparent border-0 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="400">
                 <div class="card-body">
@@ -266,19 +292,81 @@
     </div>
 </section>
 
-<section class="bg-image"
-    style="background-image: url('{% static 'images/groupe-de-masques-9@1x.png' %}'); background-size: cover; background-position: center;">
-    <div class="logos">
-        <img src="{% static 'images/sans-titre-2-0000s-0001-calque-1@1x.png' %}" loading="lazy" alt="Logo 1" class="mx-4"
-            style="width: 17%;height: 16%;">
-        <img src="{% static 'images/sans-titre-2-0000s-0002-calque-2@1x.png' %}" loading="lazy" alt="Logo 2" class="mx-4"
-            style="width: 16%;height: 16%;">
-        <img src="{% static 'images/sans-titre-2-0000s-0003-calque-3@1x.png' %}" loading="lazy" alt="Logo 3" class="mx-4"
-            style="width: 16%;height: 16%;">
-        <img src="{% static 'images/sans-titre-2-0000s-0004-calque-4@1x.png' %}" loading="lazy" alt="Logo 4" class="mx-4"
-            style="width: 16%;height: 16%;">
+<section class="bg-image">
+    <div class="logo-container">
+        <div>
+            <img src="{% static 'images/sans-titre-2-0000s-0001-calque-1@1x.png' %}" loading="lazy" alt="Logo 1"
+                class="logo-img">
+        </div>
+        <div>
+            <img src="{% static 'images/sans-titre-2-0000s-0002-calque-2@1x.png' %}" loading="lazy" alt="Logo 2"
+                class="logo-img">
+        </div>
+        <div>
+            <img src="{% static 'images/sans-titre-2-0000s-0003-calque-3@1x.png' %}" loading="lazy" alt="Logo 3"
+                class="logo-img">
+        </div>
+        <div>
+            <img src="{% static 'images/sans-titre-2-0000s-0004-calque-4@1x.png' %}" loading="lazy" alt="Logo 4"
+                class="logo-img">
+        </div>
     </div>
 </section>
+
+<style>
+    .bg-image {
+        /* background-image: url('{% static "images/groupe-de-masques-9@1x.png" %}'); */
+        background-color: #F4F4F4;
+        background-size: cover;
+        background-position: center;
+        min-height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        margin-top: -183px;
+    }
+
+    .logo-container {
+        background: white;
+        padding: 20px;
+        width: 720px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: -311px;
+    }
+
+    .logo-img {
+        height: auto;
+        max-width: 90px;
+        object-fit: contain;
+    }
+
+    @media screen and (max-width: 768px) {
+        .logo-container {
+            width: 95%;
+            padding: 10px;
+        }
+
+        .logo-img {
+            max-width: 80px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .logo-container {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .logo-img {
+            max-width: 60px;
+        }
+    }
+</style>
 
 <script>
      // Optional: Smooth scroll to the form section
@@ -339,4 +427,4 @@
     
 </style>
   
-{% endblock %}  
+{% endblock %}
