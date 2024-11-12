@@ -115,7 +115,8 @@
             <div style="border: 2px solid grey !important; border-radius: 15px !important; padding: 1rem !important;">
                 {% for tag in tags %}
                     <a href="?brand={{ selected_brand }}&tag={{ tag.name|urlencode }}&category={{ selected_category|default:category.id }}" 
-                    class="badge text-dark m-1" style="font-size: 1rem;">
+                    class="badge {% if tag.name == selected_tag %}bg-primary text-white{% else %}bg-light text-dark{% endif %} m-1"
+                    style="font-size: 1rem; text-decoration: none;">
                         {{ tag.name }}
                     </a>
                 {% endfor %}
