@@ -6,6 +6,25 @@
 
 {% block content %}
 
+<style>@media (max-width: 768px) {
+    .page-header {
+        background-size: contain; /* Pour éviter de couper l'image */
+        height: 300px; /* Ajustez la hauteur selon vos besoins */
+    }
+}
+</style>
+<div
+    class="page-header page-header-modern page-header-background page-header-background-md"
+    style="background-image: url('{% static 'images/Backgound-contact.png' %}'); 
+           background-position: center; 
+           background-size: cover; 
+           background-repeat: no-repeat;
+           height: auto; 
+           width: 100%;
+           margin-top: 66px;
+           margin-bottom: -30px;">
+</div>
+
 <section class="section section-height-1 bg-color-grey m-0 border-0">
 
     <div class="container py-4 my-5">
