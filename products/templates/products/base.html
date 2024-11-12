@@ -54,6 +54,17 @@
             font-weight: 600 !important;
         }
     </style>
+       <style>
+    /* Display dropdown menu on mobile devices without requiring a click */
+    @media (max-width: 767px) { /* Adjust the max-width as needed */
+        .nav-item.dropdown .dropdown-menu {
+            display: block; /* Always show the dropdown menu on mobile */
+            position: static; /* Remove the absolute positioning */
+            box-shadow: none; /* Optional: Remove any box-shadow for a cleaner look */
+            background: transparent; /* Optional: Adjust background for a better appearance */
+        }
+    }
+</style>
 </head>
 
 <body data-plugin-page-transition>
