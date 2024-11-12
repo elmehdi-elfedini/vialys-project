@@ -5,6 +5,7 @@
 {% block content %}
 
 
+
 <!-- Check if messages exist and display using SweetAlert -->
 {% if messages %}
     <script>
@@ -13,7 +14,7 @@
                 Swal.fire({
                     icon: '{% if message.tags == "success" %}success{% elif message.tags == "error" %}error{% endif %}',
                     title: '{% if message.tags == "success" %}{{ message }}{% elif message.tags == "error" %}Error!{% endif %}',
-                    html: {% if message.tags == "success" %}Merci d'avoir choisi notre service. Nous avons bien reçu votre demande et elle est en cours de traitement.{% else %}{{ message }}{% endif %},
+                    html: `{% if message.tags == "success" %}Merci d'avoir choisi notre service. Nous avons bien reçu votre demande et elle est en cours de traitement.{% else %}{{ message }}{% endif %}`,
                     confirmButtonText: 'OK',
                     customClass: {
                         popup: 'swal2-show',
@@ -26,6 +27,8 @@
         });
     </script>
 {% endif %}
+
+
 
 
 <style>
