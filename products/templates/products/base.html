@@ -54,16 +54,36 @@
             font-weight: 600 !important;
         }
     </style>
-       <style>
-    /* Display dropdown menu on mobile devices without requiring a click */
-    @media (max-width: 767px) { /* Adjust the max-width as needed */
-        .nav-item.dropdown .dropdown-menu {
-            display: block; /* Always show the dropdown menu on mobile */
-            position: static; /* Remove the absolute positioning */
-            box-shadow: none; /* Optional: Remove any box-shadow for a cleaner look */
-            background: transparent; /* Optional: Adjust background for a better appearance */
+    <style>
+        .navbar .nav-link {
+            font-weight: 600 !important;
         }
+    </style>
+    <style>
+        @media (max-width: 768px) {
+    /* Display dropdown menu on mobile without click or hover */
+    .nav-item.dropdown .dropdown-menu {
+        display: block; /* Always show dropdown items */
+        position: static; /* Ensure dropdown is in normal flow */
+        box-shadow: none; /* Remove shadow */
+        border: none; /* Remove any borders around the dropdown */
+        padding: 0; /* Remove any padding around the dropdown */
     }
+
+    /* Style dropdown items to avoid table-like appearance */
+    .nav-item.dropdown .dropdown-menu .dropdown-item {
+        display: block;
+        padding: 10px 16px; /* Adjust padding for spacing */
+        border: none; /* Remove borders from individual items */
+        background: none; /* Ensure background is transparent */
+    }
+
+    /* Optional: Adjust font and color for mobile */
+    .nav-item.dropdown .dropdown-menu .dropdown-item:hover {
+        background-color: #f0f0f0; /* Add a subtle background color on hover */
+    }
+}
+
 </style>
 </head>
 
