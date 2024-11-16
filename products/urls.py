@@ -1,5 +1,3 @@
-
-# products/urls.py
 from django.urls import path
 from .views import (
     acceuil,
@@ -8,7 +6,7 @@ from .views import (
     team_view,
     marque,
     contact,
-    category_products  # Add this
+    category_products  
 )
 
 urlpatterns = [
@@ -18,5 +16,5 @@ urlpatterns = [
     path("order/", create_order, name="order-create"),
     path("service_commercial/", team_view, name="service_commercial"),
     path("contact/", contact, name="contact"),
-    path("category/<int:category_id>/", category_products, name="category-products"),  # Add this
+    path("category/<int:category_id>/", category_products, name="category-products"),  
 ]
