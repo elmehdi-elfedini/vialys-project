@@ -1,17 +1,17 @@
-<!-- templates/products/index.html -->
 {% extends 'products/base.html' %}
 {% load static %}
+{% block title %} Produits | Vialys {% endblock %}
 
-{% block title %} Accueil | Vialys {% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/marque_style.css' %}">
+{% endblock %}
+
 
 {% block content %}
 <section
     class="page-header page-header-modern page-header-background "
     style="background-image: url('{% static 'images/9245@1x.png' %}'); background-position: center; background-size: cover;margin-top: 39px ;height: 550px;margin-top: 50px ;width: 100% !important;">
-   
 </section>
-
-
 <div class="row justify-content-center text-center mb-4">
     <div class="col-lg-8">
         <p class="opacity-9 text-4">PRODUITS</p>
@@ -23,128 +23,6 @@
         </p>
     </div>
 </div>
-{% load static %}
-
-
-<style>
-    body {
-        background-color: white;
-        margin: 0;
-        font-family: Arial, sans-serif;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    .category-container {
-        border: 1px solid #333333;
-        padding: 20px;
-        margin: 40px 0;
-        position: relative;
-    }
-
-    .section-title {
-        color: #666666;
-        font-size: 38px;
-        font-weight: 700;
-        position: absolute;
-        top: -28px;
-        left: 20px;
-        background: white;
-        padding: 0 15px;
-        margin: 0;
-        text-transform: capitalize;
-    }
-
-    .brand-card-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 20px;
-        width: calc(33.333% - 40px);
-    }
-
-    .brand-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: #f4f4f4;
-        padding: 20px; /* Réduit de 30px à 20px */
-        width: 90%; /* Réduit de 100% à 90% */
-        height: 220px; /* Réduit de 250px à 220px */
-        text-align: center;
-        position: relative;
-        margin-bottom: 20px;
-    }
-
-    .brand-logo {
-        width: 90%; /* Réduit de 100% à 90% */
-        height: 130px; /* Réduit de 150px à 130px */
-        object-fit: contain;
-        margin-bottom: 20px;
-    }
-
-    .brand-description {
-        color: black;
-        font-size: 14px;
-        margin-top: 5px;
-        text-align: center;
-    }
-
-    .view-range-btn {
-        background-color: #00A3E0;
-        color: white;
-        padding: 8px 25px;
-        border: none;
-        border-radius: 4px;
-        text-transform: uppercase;
-        font-size: 14px;
-        text-decoration: none;
-        position: absolute;
-        bottom: -15px;
-        left: 50%;
-        transform: translateX(-50%);
-        white-space: nowrap;
-    }
-
-    .view-range-btn:hover {
-        background-color: #0089BD;
-        color: white;
-        text-decoration: none;
-    }
-
-    .brands-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center; /* Changé de flex-start à center */
-        padding: 20px;
-        margin-top: 20px;
-    }
-
-    @media (max-width: 992px) {
-        .brand-card-wrapper {
-            width: calc(50% - 40px);
-        }
-        .section-title {
-            font-size: 34px;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .brand-card-wrapper {
-            width: 100%;
-            max-width: 300px;
-            margin: 20px auto;
-        }
-        .section-title {
-            font-size: 30px;
-        }
-    }
-</style>
-
 <div class="container">
     {% for category in categories %}
     <div class="category-container">
@@ -169,9 +47,6 @@
     </div>
     {% endfor %}
 </div>
-
-
-
 <div class="position-relative">
     <img src="{% static 'images/image11.png' %}" loading="lazy" alt="Placeholder Image" class="img-fluid"
         style="width: 100%; height: 100%; object-fit: cover;">
