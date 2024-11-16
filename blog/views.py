@@ -4,6 +4,17 @@ from .models import BlogPost
 from django.db.models import Q
 
 def blog_list(request):
+    """
+    This function handles the display of a list of blog posts, including pagination, search functionality,
+    and recent posts.
+
+    Parameters:
+    request (HttpRequest): The request object containing information about the current HTTP request.
+
+    Returns:
+    HttpResponse: The rendered HTML template for the blog list page, containing the list of blog posts,
+    recent posts, search query, and pagination information.
+    """
     posts = BlogPost.objects.filter(published=True).order_by('-created_at')
     query = request.GET.get('search')
 
@@ -23,24 +34,6 @@ def blog_list(request):
         'no_results': no_results,  
         'query': query 
     })
-
-
-def blog_detail(request, post_id):
-    post = get_object_or_404(BlogPost, id=post_id)
-    return render(request, 'blog/blog_detail.html', {
-        'post': post
-    })
-
-
-def blog_detail(request, post_id):
-    post = get_object_or_404(BlogPost, id=post_id, published=True)    
-    recent_posts = BlogPost.objects.filter(published=True).order_by('-created_at')[:3]    
-    return render(request, 'blog/blog_detail.html', {
-        'post': post,
-        'recent_posts': recent_posts
-    })
-from django.shortcuts import render, get_object_or_404
-from .models import BlogPost
 
 def blog_detail(request, id):
     post = get_object_or_404(BlogPost, id=id)
