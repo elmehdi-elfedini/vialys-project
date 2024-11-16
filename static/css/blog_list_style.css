@@ -1,0 +1,30 @@
+.custom-tag {
+  background-color: #f8f8f8;
+  /* Background color */
+  color: #5aa9e4;
+  /* Text color */
+  padding: 5px 10px;
+  /* Padding around the text */
+  border-radius: 5px;
+  /* Rounded corners */
+  margin-right: 5px;
+  /* Space between tags */
+  display: inline-block;
+  /* Keep tags inline */
+  font-weight: bold;
+  /* Bold text */
+  text-decoration: none;
+  /* Remove underline */
+}
+
+.page-header {
+  /* background-image: url("{% static 'images/blog2.jpg' %}"); */
+  background-size: cover;
+  /* L'image couvrira toute la section */
+  background-position: center;
+  /* Centre l'image dans la section */
+  background-repeat: no-repeat;
+  /* Empêche l'image de se répéter */
+  height: auto;
+  /* Ajuste la hauteur en fonction du contenu */
+}

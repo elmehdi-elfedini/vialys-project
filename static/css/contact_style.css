@@ -1,0 +1,55 @@
+@media (max-width: 768px) {
+  .page-header {
+    background-size: contain; /* Pour éviter de couper l'image */
+    height: 300px; /* Ajustez la hauteur selon vos besoins */
+  }
+}
+
+.bg-image {
+  background-color: #f4f4f4;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.logo-container {
+  background: white;
+  padding: 20px;
+  width: 720px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: -311px;
+}
+
+.logo-img {
+  height: auto;
+  max-width: 90px;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 768px) {
+  .logo-container {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .logo-img {
+    max-width: 80px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logo-container {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .logo-img {
+    max-width: 60px;
+  }
+}
