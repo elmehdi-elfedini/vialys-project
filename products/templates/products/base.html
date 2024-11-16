@@ -1,25 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-{% load static %}
-
 <head>
     <!-- Basic -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}Your Site Title{% endblock %}</title>
+    <title>{% block title %} Title Page {% endblock %}</title>
     <meta name="keywords" content="WebSite Template" />
-    <meta name="description" content="Your Site Description">
-    <meta name="author" content="Your Name">
-
+    <meta name="description" content="Vialys est spécialisée en ingrédients pour la boulangerie, la viennoiserie et la pâtisserie.
+    Depuis 2013, Vialys se développe pour proposer une large gamme de produits de qualité et
+    innovants pour une clientèle en recherche d’excellence. Aujourd’hui, Vialys a développé un
+    important réseau de distribution et est présente dans les plus grandes villes du royaume">
+    <meta name="author" content="Vialys">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
-
+    <link rel="shortcut icon" href="{% static 'images/icones/vialyse_icon.ico' %}" type="image/x-icon" />
     <!-- Web Fonts -->
-    <link id="googleFonts"
-        href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800%7CShadows+Into+Light&display=swap"
-        rel="stylesheet" type="text/css">
-
+    <link id="googleFonts"href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800%7CShadows+Into+Light&display=swap"rel="stylesheet" type="text/css">
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
@@ -37,58 +33,23 @@
     <link id="skinCSS" rel="stylesheet" href="{% static 'css/skins/default.css' %}">
     <link id="skinCSS" rel="stylesheet" href="{% static 'css/skins/skin-landing.css' %}">
     <!-- Theme Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-    <!-- Demo CSS -->
-    <!-- <link rel="stylesheet" href="{% static 'css/footer.css'%}"> -->
     <link rel="stylesheet" href="{% static 'css/alert_style.css'%}">
     <link rel="stylesheet" href="{% static 'css/header_style.css'%}">
+    <link rel="stylesheet" href="{% static 'css/base_style.css'%}">
     <!-- Montserrat font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-<!-- SweetAlert2 CSS and JS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert2 CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    {% block styles %}      <!-- Page-specific styles go here -->     {% endblock %}    
+    {% block extra_head %}  <!-- Page-specific head go here --> {% endblock %} 
 
-
-    {% block extra_head %}{% endblock %} <!-- Block for extra head content -->
-    <style>
-        .navbar .nav-link {
-            font-weight: 600 !important;
-        }
-    </style>  
-    <style>
-        @media (max-width: 768px) {
-    /* Display dropdown menu on mobile without click or hover */
-    .nav-item.dropdown .dropdown-menu {
-        display: block; /* Always show dropdown items */
-        position: static; /* Ensure dropdown is in normal flow */
-        box-shadow: none; /* Remove shadow */
-        border: none; /* Remove any borders around the dropdown */
-        padding: 0; /* Remove any padding around the dropdown */
-    }
-
-    /* Style dropdown items to avoid table-like appearance */
-    .nav-item.dropdown .dropdown-menu .dropdown-item {
-        display: block;
-        padding: 10px 16px; /* Adjust padding for spacing */
-        border: none; /* Remove borders from individual items */
-        background: primary; /* Ensure background is transparent */
-    }
-
-    /* Optional: Adjust font and color for mobile */
-    .nav-item.dropdown .dropdown-menu .dropdown-item:hover {
-        background-color: #f0f0f0; /* Add a subtle background color on hover */
-    }
-}
-
-</style>
 </head>
 
 <body data-plugin-page-transition>
     <div class="body">
-
         <header>
             <div id="header" class="header-nav header-effect-shrink"
-                data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 120, 'stickyHeaderContainerHeight': 70}">
-                
+                data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': false, 'stickyChangeLogo': true, 'stickyStartAt': 120, 'stickyHeaderContainerHeight': 70}">                
                 <nav class="navbar navbar-expand-lg fixed-top">
                     <div class="container-fluid p-0">
                         <a class="navbar-brand" href="{% url 'acceuil' %}"><i>VIALYS</i></a>
@@ -117,8 +78,7 @@
                                         </li>
                                         {% endfor %}
                                     </ul>
-                                </li>
-                                
+                                </li>                                
                                 <li class="nav-item">
                                     <a class="nav-link {% if request.resolver_match.url_name == 'service_commercial' %}active{% endif %}" 
                                        href="{% url 'service_commercial' %}">SERVICE COMMERCIAL</a>
@@ -161,8 +121,7 @@
                            <!-- end Search div -->
                         </div>
                     </div>
-                </nav>
-                
+                </nav>                
                 <!-- Offcanvas Menu -->
                 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu"
                     aria-labelledby="offcanvasMenuLabel">
@@ -219,47 +178,12 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-                
-                <style>
-                /* For main navigation */
-                .dropdown:hover .dropdown-menu {
-                    display: block;
-                }
-                
-                .dropdown-menu {
-                    margin-top: 0;
-                }
-                
-                /* For offcanvas menu */
-                .offcanvas .dropdown:hover .dropdown-menu {
-                    position: static;
-                    float: none;
-                    border: none;
-                    padding-left: 1rem;
-                    background: transparent;
-                }
-                
-                .offcanvas .dropdown-menu {
-                    margin-top: 0;
-                    box-shadow: none;
-                }
-                
-                .offcanvas .dropdown-divider {
-                    border-color: rgba(0,0,0,0.1);
-                }
-                </style>
-                
-              
-                
-              
+                </div>                    
             </div>
         </header>
-
         <div role="main" class="main">
             {% block content %}{% endblock %} <!-- Block for page-specific content -->
         </div>
-
         <footer class="footer">
             <div class="container-fluid">
                 <div class="footer-content">
@@ -273,36 +197,32 @@
                             <a href="https://www.youtube.com/channel/UCcVM3HXquoA24BWvioe6WcQ"><img
                                     src="{% static 'images/icones/1384060.png' %}" alt="YouTube"></a>
                         </div>
-                    </div>
-        
+                    </div>        
                     <div class="footer-section">
                         <h5>Entreprise</h5>
                         <ul>
                             <li><a href="{% url 'acceuil' %}">Présentation</a></li>
                             <li><a href="{% url 'marque' %}">Produits</a></li>
                             <li><a href="{% url 'service_commercial' %}">Notre Equipe</a></li>
-                            <li><a href="#">Baking News</a></li>
+                            <li><a href="{% url 'blog_list' %}">Baking News</a></li>
                             <li><a href="{% url 'contact' %}">Contacts</a></li>
                         </ul>
-                    </div>
-        
+                    </div>        
                     <div class="footer-section">
                         <h5>Assistance</h5>
                         <ul>
                             <li><a href="{% url 'service_commercial' %}">FAQ</a></li>
                             <li><a href="{% url 'contact' %}">Assistance technique</a></li>
-                            <li><a href="#">Recettes & conseils</a></li>
+                            <li><a href="{% url 'blog_list' %}">Recettes & conseils</a></li>
                         </ul>
-                    </div>
-        
+                    </div>        
                     <div class="footer-section">
                         <h5>Contacts</h5>
                         <p>119, Avenue de L'Armée Royale -<br> Espace Sofia - Casablanca - Maroc</p>
-                        <p>+212 5 22 44 99 30</p>
-                        <p>+212 5 22 44 99 46</p>
-                        <p>contact@vialys.ma</p>
-                        
-                        
+                        <p><a href="tel:+212522449930">+212 5 22 44 99 30</a></p>
+                        <p><a href="tel:+212522449946">+212 5 22 44 99 46</a></p>
+                        <p><a href="mailto:contact@vialys.ma">contact@vialys.ma</a></p>
+                                                                      
                     </div>
                 </div>
             </div>
@@ -310,155 +230,10 @@
                 <p>© VIALYS 2024 All rights reserved.</p>
                 <p> <a href="https://bazartagency.com">Powered by Bazart Agency</a></p>
             </div>
-        </footer>
-        
-        <style>
-        .footer {
-    background-color: #052d70;
-    color: white;
-    padding: 4rem 0;
-    font-size: 0.85rem;
-}
-
-.container-fluid {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.footer-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 710px;
-    margin: 42px auto;
-    gap: 1.1rem;
-}
-
-.footer-section {
-    flex: 1;
-    margin-bottom: 2rem;
-    padding: 0 15px;
-}
-
-.footer h5 {
-    color: white;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    padding-left: 0;
-}
-
-.footer p {
-    color: white;
-    font-size: 0.85rem;
-    line-height: 1.6;
-    padding-left: 0;
-    margin-bottom: 0.5rem;
-}
-
-.footer ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer ul li {
-    margin-bottom: 0.5rem;
-}
-
-.footer ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 0.85rem;
-    transition: opacity 0.3s ease;
-}
-
-.social-icons {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-    padding-left: 0;
-}
-
-.social-icons img {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-}
-
-.footer-bottom {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 50px; /* Augmenté l'espacement entre les éléments */
-    padding-top: 2rem;
-    font-size: 0.65rem;
-    max-width: 710px;
-    margin: 0 auto;
-}
-
-.footer-bottom p {
-    margin: 0;
-    padding: 0;
-}
-
-.footer-bottom p:first-child {
-    padding-right: 50px; /* Ajout d'un padding à droite du premier texte */
-    border-right: 1px solid rgba(255, 255, 255, 0.3); /* Ajout d'une ligne séparatrice */
-}
-
-.footer-bottom p:last-child {
-    padding-left: 50px; /* Ajout d'un padding à gauche du deuxième texte */
-}
-
-.footer-bottom a {
-    color: white;
-    text-decoration: none;
-}
-
-/* Responsive design */
-@media (max-width: 992px) {
-    .footer-content {
-        justify-content: flex-start;
-    }
-    
-    .footer-section {
-        flex: 0 0 calc(50% - 1.5rem);
-    }
-}
-
-@media (max-width: 768px) {
-    .footer-section {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-    
-    .footer-bottom {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
-
-    .footer-bottom p:first-child {
-        padding-right: 0;
-        border-right: none;
-    }
-
-    .footer-bottom p:last-child {
-        padding-left: 0;
-    }
-}
-        </style>
-
-
+        </footer>        
     </div>
     <!-- SweetAlert2 CSS and JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-
     <!-- Vendor -->
     <script src="{% static 'vendor/plugins/js/plugins.min.js'%}"></script>
     <!-- Theme Base, Components and Settings -->
@@ -473,7 +248,7 @@
             $('.search-bar').focus(); // Focus on the search bar when shown
         }
     </script>
-    {% block extra_scripts %}{% endblock %} <!-- Block for extra scripts -->
-</body>
 
+    {% block extra_scripts %}{% endblock %} 
+</body>
 </html>
