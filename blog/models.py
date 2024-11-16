@@ -1,6 +1,5 @@
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField 
-from django.db import models
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 import os
@@ -8,12 +7,12 @@ import os
 class Tag(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
-    def _str_(self):
+    def __str__(self):
         return self.name
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='blogs/')
+    image = models.ImageField(upload_to='blogs/',null=True, blank=True)
     content = RichTextUploadingField()  # for rich text editing
     author = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -22,7 +21,7 @@ class BlogPost(models.Model):
     published_date = models.DateTimeField(null=True, blank=True)
     tags = models.ManyToManyField(Tag, related_name='blog_posts', blank=True) 
 
-    def _str_(self):
+    def __str__(self):
         return self.title
 
 
