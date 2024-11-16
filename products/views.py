@@ -1,4 +1,3 @@
-# products/views.py
 from .models import Product, Order
 from django.http import HttpResponse
 from .models import Product, Category, Brand
@@ -12,6 +11,7 @@ from .models import TeamMember
 def acceuil(request):
     return render(request, 'products/acceuil.html')
 
+
 def service_commercial(request):
     return render(request, 'products/service_commercial.html') 
 
@@ -24,6 +24,14 @@ def marque(request):
 
 
 def product_list(request):
+    """
+    This function handles the product list view, allowing users to filter products based on search, brand, tag, and category.
+    It also generates the necessary data for rendering the product list template.
+    Parameters:
+    request (HttpRequest): The incoming request object containing GET parameters for search, brand, tag, and category.
+    Returns:
+    HttpResponse: The rendered product list template with the appropriate context.
+    """
     search_query = request.GET.get('search', '')
     selected_brand = request.GET.get('brand', '')
     selected_tag = request.GET.get('tag', '')
@@ -86,6 +94,18 @@ def product_list(request):
 
 
 def category_products(request, category_id):
+    """
+    This function handles the display of products belonging to a specific category.
+    It allows users to filter products based on search, brand, and tag.
+    If a category is not found, it displays an error message and redirects to the product list view.
+
+    Parameters:
+    request (HttpRequest): The incoming request object containing GET parameters for search, brand, and tag.
+    category_id (int): The unique identifier of the category for which products are to be displayed.#+
+
+    Returns:
+    HttpResponse: The rendered product list template with the appropriate context.
+    """
     try:
         category = Category.objects.get(id=category_id)
     except Category.DoesNotExist:
@@ -136,6 +156,15 @@ def category_products(request, category_id):
     })
 
 def create_order(request):
+    """
+    This function handles the creation of a new order. It processes POST requests containing order details,#+
+    validates the data, and saves the order to the database. If the request method is not POST, it displays an error message.
+    Parameters:
+    request (HttpRequest): The incoming request object containing POST parameters for order details.
+    Returns:
+    HttpResponseRedirect: If the order is successfully created, it redirects to the product list view with a success message.#+
+    HttpResponseRedirect: If the request method is not POST, it redirects to the product list view with an error message.#+
+    """
     if request.method == 'POST':
         order = Order(
             name=request.POST.get('name'),
@@ -154,10 +183,16 @@ def create_order(request):
 
 
 def team_view(request):
-    team_members = TeamMember.objects.all().order_by('priority')
-    print("Nombre de membres trouvés:", team_members.count())
-    print("Membres:", [f"{member.name} - {member.role}" for member in team_members])
-    
+    """
+    This function handles the display of team members in the service commercial page.#+
+    It retrieves all team members from the database, orders them by priority, and prepares the context for rendering the template.
+    Parameters:
+    request (HttpRequest): The incoming request object. It is used to access the request-related data.
+    Returns:
+    HttpResponse: The rendered service commercial template with the team members' context.
+
+    """
+    team_members = TeamMember.objects.all().order_by('priority')    
     context = {
         'team_members': team_members
     }
