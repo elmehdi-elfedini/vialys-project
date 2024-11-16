@@ -1,56 +1,42 @@
 {% extends 'products/base.html' %}
-{% load static %} <!-- Add this line to load the static template tag library -->
+{% load static %} 
 {% block title %} Produits | Vialys {% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/products_list.css' %}">
+{% endblock %}
 
 {% block content %}
 
-
-
-<!-- Check if messages exist and display using SweetAlert -->
 {% if messages %}
+    <!-- Lorsque des messages sont présents, ce script affiche un pop-up pour chaque message -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             {% for message in messages %}
                 Swal.fire({
-                    icon: '{% if message.tags == "success" %}success{% elif message.tags == "error" %}error{% endif %}',
-                    title: '{% if message.tags == "success" %}{{ message }}{% elif message.tags == "error" %}Error!{% endif %}',
-                    html: `{% if message.tags == "success" %}Merci d'avoir choisi notre service. Nous avons bien reçu votre demande et elle est en cours de traitement.{% else %}{{ message }}{% endif %}`,
-                    confirmButtonText: 'OK',
+                    icon: '{% if message.tags == "success" %}success{% elif message.tags == "error" %}error{% endif %}',                    
+                    title: '{% if message.tags == "success" %}{{ message }}{% elif message.tags == "error" %}Error!{% endif %}',                    
+                    html: `{% if message.tags == "success" %}Merci d'avoir choisi notre service. Nous avons bien reçu votre demande et elle est en cours de traitement.{% else %}{{ message }}{% endif %}`,                    
+                    confirmButtonText: 'D\'accord', 
                     customClass: {
                         popup: 'swal2-show',
                         icon: 'swal2-icon-show',
                         title: 'swal2-title',
                         htmlContainer: 'swal2-html-container',
-                    }
+                    },
+                     showClass: {
+                        popup: 'swal2-show',
+                    },
+                    hideClass: {
+                        popup: 'swal2-hide', 
+                    },                    
+                    backdrop: 'rgba(0, 0, 0, 0.6)',
+
                 });
             {% endfor %}
         });
     </script>
 {% endif %}
 
-
-
-
-<style>
-    body,
-    html {
-        /* margin-bottom: 20px; */
-        padding: 0;
-        height: 100%;
-    }
-    @media (max-width: 991px) {
-  .owl-carousel .owl-item {
-    width: 100% !important; 
-  }
-}
-
-@media (max-width: 767px) {
-  .owl-carousel .owl-item {
-    width: 100% !important;
-  }
-}
-
-</style>
 
 <div class="owl-carousel owl-carousel-light owl-carousel-light-init-fadeIn owl-theme manual dots-inside dots-horizontal-center show-dots-hover show-dots-xs nav-style-1 nav-inside nav-inside-plus nav-dark nav-lg nav-font-size-lg show-nav-hover mb-0"
     data-plugin-options="{'autoplayTimeout': 7000}" data-dynamic-height="['350px','350px','350px','350px','350px']"
@@ -60,26 +46,28 @@
             <!-- Carousel Slide 1 -->
             <div class="owl-item position-relative overflow-hidden"
             style="background-image: url({% static 'images/sans-titre-4@1x.png' %}); background-size: cover; background-position: center; height:  100% !important;">         
-        </div>
-            <div class="owl-item position-relative overflow-hidden"
-                style="background-image: url({% static 'images/38273@1x.png' %}); background-size: cover; background-position: center;">         
             </div>
-
+        <div class="owl-item position-relative overflow-hidden"
+                style="background-image: url({% static 'images/38273@1x.png' %}); background-size: cover; background-position: center;">         
+        </div>
             <!-- Carousel Slide 2 -->
-            <div class="owl-item position-relative"
+        <div class="owl-item position-relative"
                 style="background-image: url({% static 'images/112972@1x.png' %}); background-size: cover; background-position: center; ">             
-            </div>      
+        </div>      
         </div>
     </div>
+
     <div class="owl-nav">
         <button type="button" role="presentation" class="owl-prev" aria-label="Previous"></button>
         <button type="button" role="presentation" class="owl-next" aria-label="Next"></button>
     </div>
+
     <div class="owl-dots mb-5">
         <button role="button" class="owl-dot active"><span></span></button>
         <button role="button" class="owl-dot"><span></span></button>
     </div>
 </div>
+
 
 <section id="products-section" class="section section-no-border section-light position-relative z-index-3 pt-0 m-0">
     <div class="container justify-content-center align-items-center">
@@ -108,8 +96,7 @@
             </div>
 
             
-
-                <!-- Display tags -->
+        <!-- Display tags -->
         <div class="container py-4 p-0">
             <h4 class="text-muted">Choisir catégorie :</h4>
             <div style="border: 2px solid grey !important; border-radius: 15px !important; padding: 1rem !important;">
@@ -152,7 +139,7 @@
                    <div class="product-content flex-grow-1">
                        <ul class="product-details">
                            <li class="product-title ">{{ product.title }}</li>
-                           <li><span class="label">Conditionnement : </span><span class="value">{{ product.emballage }}</span></li>
+                           <li><span class="label">Emballage : </span><span class="value">{{ product.emballage }}</span></li>
                            <li><span class="label">Descriptif : </span><span class="value">{{ product.description }}</span></li>
                               
                        </ul>
@@ -176,9 +163,6 @@
     </div>
 </section>
 
-<script>
-    window.onload = () => document.getElementById('products-section')?.scrollIntoView();
-</script>
 <section  class="section section-height-1 bg-color-grey m-0 border-0" id="order-form">
     <div id="order-form" class="container py-4 my-5">
         <div class="row justify-content-center text-center mb-4 appear-animation"
@@ -193,7 +177,6 @@
         </div>
 
         <div style="margin-bottom: -120px;">
-
             <div class="card mb-4 bg-transparent border-0 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="400">
                 <div class="card-body">
                     <div class="row">
@@ -289,9 +272,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
-
+            </div>            
         </div>
     </div>
 </section>
@@ -317,63 +298,9 @@
     </div>
 </section>
 
-<style>
-    .bg-image {
-        /* background-image: url('{% static "images/groupe-de-masques-9@1x.png" %}'); */
-        background-color: #F4F4F4;
-        background-size: cover;
-        background-position: center;
-        min-height: 300px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 1rem;
-        margin-top: -183px;
-    }
 
-    .logo-container {
-        background: white;
-        padding: 20px;
-        width: 720px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        margin-bottom: -311px;
-    }
-
-    .logo-img {
-        height: auto;
-        max-width: 90px;
-        object-fit: contain;
-    }
-
-    @media screen and (max-width: 768px) {
-        .logo-container {
-            width: 95%;
-            padding: 10px;
-        }
-
-        .logo-img {
-            max-width: 80px;
-        }
-    }
-
-    @media screen and (max-width: 480px) {
-        .logo-container {
-            width: 100%;
-            padding: 5px;
-        }
-
-        .logo-img {
-            max-width: 60px;
-        }
-    }
-</style>
 
 <script>
-     // Optional: Smooth scroll to the form section
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -385,50 +312,7 @@
             });
         });
     });
-    </script>
-<style>
-       .product-details {
-        list-style: none;
-        padding: 0;
-        margin: 10px 0;
-    }
+</script>  
+<script> window.onload = () => document.getElementById('products-section')?.scrollIntoView();</script>
 
-    .product-details li {
-        margin-bottom: 8px;
-        font-size: 14px;
-        line-height: 1.4;
-        position: relative;
-        padding-left: 15px; /* Espace pour le point */
-    }
-
-    .product-details li::before {
-        content: "•";
-        position: absolute;
-        left: 0;
-        color: #000; /* Couleur du point */
-        font-size: large;
-    }
-
-    /* Style pour le titre (premier li) */
-    .product-details li:first-child {
-        font-size: 20px;
-        font-weight: bold;
-        color: #333;
-        padding-bottom: 10px;
-    }
-
-    /* Style pour l'emballage et le descriptif */
-    .product-details li span.label {
-        color: #000;
-        font-weight: 600; /* Semi-bold */
-    }
-
-    /* Style pour la valeur après les labels */
-    .product-details li span.value {
-        color: #666;
-    }
-    
-    
-</style>
-  
-{% endblock %}
+{% endblock %} 
