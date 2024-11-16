@@ -18,7 +18,6 @@
 }
 
 .page-header {
-  /* background-image: url("{% static 'images/blog2.jpg' %}"); */
   background-size: cover;
   /* L'image couvrira toute la section */
   background-position: center;
