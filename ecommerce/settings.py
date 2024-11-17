@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-9wg)+3y0n@$_ug1o7_l8^yem$&qvp+5m9eh*jnm0v7s)l(ezjg
 DEBUG = False  # Disable debug mode for production
 
 # Replace "*" with a list of trusted domains or IPs
-ALLOWED_HOSTS = ["vialys-project.onrender.com", "www.vialys-project.onrender.com"]
+ALLOWED_HOSTS = ["*"]
 
 
 
